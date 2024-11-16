@@ -3,20 +3,8 @@
   "name": "FlowAI",
   "version": "1.0",
   "description": "An AI-powered productivity tool for creating task flows and tracking social media usage.",
-  "permissions": [
-      "storage",
-      "tabs"
-  ],
-  "action": {
-      "default_popup": "popup.html"
-  },
+  "permissions": ["tabs"],
   "background": {
-      "service_worker": "background.js"
-  },
-  "content_scripts": [
-      {
-          "matches": ["<all_urls>"],
-          "js": ["content.js"]
-      }
-  ]
+    "service_worker": "background.js"
+  }
 }

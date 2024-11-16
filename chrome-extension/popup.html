@@ -7,24 +7,25 @@
     <title>FlowAI</title>
 </head>
 <body>
-    <h1>Welcome to FlowAI!</h1>
-    <div id="flow-section">
-        <input type="text" id="prompt-input" placeholder="Describe your task flow...">
-        <button id="generate-flow">Create Flow</button>
+    <div id="container">
+        <h1>FlowAI</h1>
+        <button id="open-settings">Settings</button>
+        <div id="flow-creation">
+            <h2>Create Task Flow</h2>
+            <input type="text" id="task-input" placeholder="Enter your task...">
+            <button id="create-flow">Create Flow</button>
+        </div>
+        <div id="games">
+            <h2>Games</h2>
+            <button id="tic-tac-toe">Tic Tac Toe</button>
+            <button id="hangman">Hangman</button>
+        </div>
+        <div id="pomodoro">
+            <h2>Pomodoro Timer</h2>
+            <button id="start-pomodoro">Start Pomodoro</button>
+            <div id="timer-display">25:00</div>
+        </div>
     </div>
-    <div id="flow-display">
-        <h2>Your Flow:</h2>
-        <ul id="flow-list"></ul>
-    </div>
-    <div id="social-media-tracking">
-        <h3>Social Media Usage</h3>
-        <p>Total time today: <span id="usage-time">0</span> mins</p>
-    </div>
-    <div id="challenges">
-        <h3>Current Challenges</h3>
-        <p>Complete 3 tasks this week to unlock a new character!</p>
-    </div>
-    <button id="games-button">Play Games</button>
     <script src="popup.js"></script>
 </body>
 </html>
