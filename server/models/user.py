@@ -17,7 +17,8 @@ class User(BaseModel):
     gender: str = Field(None, pattern='^(male|female|other)$')  # Example to validate gender
     placeOfResidence: str = None
     google_id: str = None
-    
+    fieldOfStudy: str = None
+    preferredLanguage: str = Field(None, pattern='^[a-z]{2}$')  
     
 
     """ Step 3: Define class methods """

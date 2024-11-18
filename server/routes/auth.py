@@ -16,6 +16,7 @@ from email_validator import validate_email, EmailNotValidError
 from secrets import token_urlsafe
 from flask_mail import Message
 from utils.reset_tokens import generate_reset_token, verify_reset_token
+from utils.translate_decorator import translate_response
 
 """Step 2: Configurations"""
 load_dotenv()
@@ -29,11 +30,16 @@ auth_routes = Blueprint("auth", __name__)
 
 #Route for user registration
 @auth_routes.post('/user/signup')
+@translate_response
 def signup():
     try:
         logging.info("Starting user registration process")
         user_data = request.get_json()
         logging.info(f"Received user data: {user_data}")
+
+        # Ensure 'preferredLanguage' is provided, else set a default (e.g., 'en')
+        if 'preferredLanguage' not in user_data or not user_data['preferredLanguage']:
+            user_data['preferredLanguage'] = 'en'  # Default language is English
 
         user = UserModel(**user_data)
 
@@ -55,7 +61,7 @@ def signup():
             user_id = result.inserted_id
             access_token = create_access_token(identity=str(user_id), expires_delta=timedelta(hours=72))
 
-            return jsonify({"message": "User registered successfully", "access_token": access_token, "userId": str(user_id)}), 201
+            return jsonify({"message": "User registered successfully", "access_token": access_token, "userId": str(user_id), "preferredLanguage": user.preferredLanguage or 'en'}), 201
         else:
             logging.error("Failed to save user")
             return jsonify({"error": "Failed to register user"}), 500
@@ -65,10 +71,9 @@ def signup():
 
 
 
-
-
 #Route for user login
 @auth_routes.post('/user/login')
+@translate_response
 def login():
     try:
         # Get the identifier and password from the request
@@ -94,7 +99,11 @@ def login():
         
         if user and check_password_hash(user.password, password):
             access_token = create_access_token(identity=str(user.id), expires_delta=timedelta(hours=72))
-            return jsonify(access_token=access_token, userId=str(user.id)), 200
+            return jsonify({
+                "access_token": access_token,
+                "userId": str(user.id),
+                "preferredLanguage": user.preferredLanguage or 'en'  # Include preferredLanguage
+            }), 200
         else:
             return jsonify({"msg": "Invalid identifier or password"}), 401
         
@@ -111,6 +120,7 @@ def login():
 
 #Route for user logout
 @auth_routes.post('/user/logout')
+@translate_response
 @jwt_required()
 def logout():
     # JWT Revocation or Blacklisting could be implemented here if needed
@@ -124,6 +134,7 @@ def logout():
 
 # Route to start Google OAuth
 @auth_routes.route('/auth/google')
+@translate_response
 def google_login():
     redirect_uri = url_for('auth.google_callback', _external=True)
     nonce = token_urlsafe(16)  # Generate a secure random nonce
@@ -133,6 +144,7 @@ def google_login():
 
 # Route to handle Google OAuth callback
 @auth_routes.route('/auth/google/callback')
+@translate_response
 def google_callback():
     try:
         token = oauth.google.authorize_access_token()
@@ -200,6 +212,7 @@ def google_callback():
 
 # Route to request password reset
 @auth_routes.post('/user/request_reset')
+@translate_response
 def request_password_reset():
     try:
         data = request.get_json()
@@ -243,6 +256,7 @@ def request_password_reset():
 
 # Route to reset password
 @auth_routes.post('/user/reset_password/<token>')
+@translate_response
 def reset_password(token):
     new_password = request.json.get('password')
     user = verify_reset_token(token)
@@ -253,3 +267,14 @@ def reset_password(token):
     user.update_password(user.username, new_password_hash)
     
     return jsonify({"message": "Password has been reset successfully"}), 200
+
+
+
+@auth_routes.get('/user/greet')
+@jwt_required()
+@translate_response
+def greet_user():
+    """
+    A protected route that returns a greeting message.
+    """
+    return {"message": "Hello, welcome to our application!"}, 200
