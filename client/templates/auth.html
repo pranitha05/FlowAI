@@ -1,114 +1,118 @@
-<!-- auth.html -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>FlowAI - Authentication</title>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
-  <!-- Update the path based on your frontend server setup -->
-  <link rel="stylesheet" href="/static/css/auth.css">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="auth.css">
 </head>
 <body>
-  <div class="auth-container">
-    <div class="auth-card">
-      <h1>FlowAI</h1>
-      <div class="tabs">
-        <button class="tab-button active" data-target="login">Login</button>
-        <button class="tab-button" data-target="signup">Signup</button>
-        <button class="tab-button" data-target="forgot-password">Forgot Password</button>
-      </div>
-      <div class="tab-content">
-        <!-- Login Form -->
-        <div class="form-section active" id="login">
-          <form id="loginForm">
-            <h2>Login</h2>
-            <div class="input-group">
-              <label for="login-identifier">Username or Email</label>
-              <input type="text" id="login-identifier" name="identifier" required>
-            </div>
-            <div class="input-group">
-              <label for="login-password">Password</label>
-              <input type="password" id="login-password" name="password" required>
-            </div>
-            <button type="submit" class="btn">Login</button>
-            <button type="button" class="btn google-btn" id="googleLoginBtn">Login with Google</button>
-            <div id="loginMessage" class="message"></div>
-          </form>
-        </div>
-
-        <!-- Signup Form -->
-        <div class="form-section" id="signup">
-          <form id="signupForm">
-            <h2>Signup</h2>
-            <div class="input-group">
-              <label for="signup-username">Username</label>
-              <input type="text" id="signup-username" name="username" required>
-            </div>
-            <div class="input-group">
-              <label for="signup-email">Email</label>
-              <input type="email" id="signup-email" name="email" required>
-            </div>
-            <div class="input-group">
-              <label for="signup-password">Password</label>
-              <input type="password" id="signup-password" name="password" required>
-            </div>
-            <div class="input-group">
-              <label for="signup-name">Name</label>
-              <input type="text" id="signup-name" name="name" required>
-            </div>
-            <div class="input-group">
-              <label for="signup-age">Age</label>
-              <input type="number" id="signup-age" name="age" min="18" required>
-            </div>
-            <div class="input-group">
-              <label for="signup-gender">Gender</label>
-              <select id="signup-gender" name="gender" required>
-                <option value="" disabled selected>Select your gender</option>
-                <option value="male">Male</option>
-                <option value="female">Female</option>
-                <option value="non-binary">Non-Binary</option>
-                <option value="prefer-not-to-say">Prefer Not to Say</option>
-              </select>
-            </div>
-            <div class="input-group">
-              <label for="signup-study">Field of Study</label>
-              <input type="text" id="signup-study" name="fieldOfStudy" required>
-            </div>
-            <div class="input-group">
-              <label for="signup-language">Preferred Language</label>
-              <select id="signup-language" name="preferredLanguage" required>
-                <option value="" disabled selected>Select language</option>
-                <option value="en">English</option>
-                <option value="ta">Tamil</option>
-                <option value="hi">Hindi</option>
-                <option value="ml">Malayalam</option>
-                <option value="fr">French</option>
-                <option value="zh">Chinese</option>
-              </select>
-            </div>
-            <button type="submit" class="btn">Signup</button>
-            <div id="signupMessage" class="message"></div>
-          </form>
-        </div>
-
-        <!-- Forgot Password Form -->
-        <div class="form-section" id="forgot-password">
-          <form id="forgotPasswordForm">
-            <h2>Reset Password</h2>
-            <div class="input-group">
-              <label for="forgot-email">Email</label>
-              <input type="email" id="forgot-email" name="email" required>
-            </div>
-            <button type="submit" class="btn">Send Reset Link</button>
-            <div id="forgotPasswordMessage" class="message"></div>
-          </form>
-        </div>
-      </div>
+  <header>
+    <div class="logo">
+      <img src="/static/image.png" alt="FlowAI Logo" onclick="navigateToIndex()"> <!-- Clickable Logo -->
+      FlowAI
     </div>
-  </div>
+  </header>
+  <main class="auth-container">
+    <div class="tabs">
+      <button class="tab-btn active" data-tab="login">Login</button>
+      <button class="tab-btn" data-tab="signup">Signup</button>
+      <button class="tab-btn" data-tab="forgot-password">Forgot Password</button>
+    </div>
 
-  <!-- Update the path based on your frontend server setup -->
-  <script type="module" src="/static/js/auth.js"></script>
+    <!-- Login Form -->
+    <div class="form-section" id="login">
+      <form id="loginForm" onsubmit="navigateToLandingPage(event)">
+        <h2>Welcome Back!</h2>
+        <p>Access your personalized FlowAI workspace.</p>
+        <div class="input-group">
+          <label for="login-email">Email</label>
+          <input type="email" id="login-email" name="email" required>
+        </div>
+        <div class="input-group">
+          <label for="login-password">Password</label>
+          <input type="password" id="login-password" name="password" required>
+        </div>
+        <button type="submit" class="btn">Login</button>
+        <div id="loginMessage" class="message"></div>
+        <!-- Forgot Password Form -->
+    <div class="form-section hidden" id="forgot-password">
+      <form id="forgotPasswordForm">
+        <h2>Reset Password</h2>
+        <p>Enter your email to receive reset instructions.</p>
+        <div class="input-group">
+          <label for="forgot-email">Email</label>
+          <input type="email" id="forgot-email" name="email" required>
+        </div>
+        <button type="submit" class="btn">Send Reset Link</button>
+        <div id="forgotPasswordMessage" class="message"></div>
+      </form>
+    </div>
+      </form>
+    </div>
+
+    <!-- Signup Form -->
+    <div class="form-section hidden" id="signup">
+      <form id="signupForm" onsubmit="navigateToLandingPage(event)">
+        <h2>Join FlowAI</h2>
+        <p>Create an account and transform productivity with AI.</p>
+        <div class="input-group">
+          <label for="signup-username">Username</label>
+          <input type="text" id="signup-username" name="username" required>
+        </div>
+        <div class="input-group">
+          <label for="signup-email">Email</label>
+          <input type="email" id="signup-email" name="email" required>
+        </div>
+        <div class="input-group">
+          <label for="signup-password">Password</label>
+          <input type="password" id="signup-password" name="password" required>
+        </div>
+        <div class="input-group">
+          <label for="signup-name">Name</label>
+          <input type="text" id="signup-name" name="name" required>
+        </div>
+        <div class="input-group">
+          <label for="signup-age">Age</label>
+          <input type="number" id="signup-age" name="age" min="18" required>
+        </div>
+        <div class="input-group">
+          <label for="signup-gender">Gender</label>
+          <select id="signup-gender" name="gender" required>
+            <option value="" disabled selected>Select your gender</option>
+            <option value="male">Male</option>
+            <option value="female">Female</option>
+            <option value="non-binary">Non-Binary</option>
+            <option value="prefer-not-to-say">Prefer Not to Say</option>
+          </select>
+        </div>
+        <div class="input-group">
+          <label for="signup-language">Preferred Language</label>
+          <select id="signup-language" name="preferredLanguage" required>
+            <option value="" disabled selected>Select language</option>
+            <option value="en">English</option>
+            <option value="ta">Tamil</option>
+            <option value="hi">Hindi</option>
+            <option value="ml">Malayalam</option>
+            <option value="fr">French</option>
+            <option value="zh">Chinese</option>
+          </select>
+        </div>
+        <button type="submit" class="btn">Signup</button>
+        <div id="signupMessage" class="message"></div>
+      </form>
+    </div>
+
+  </main>
+  <script>
+    function navigateToIndex() {
+      window.location.href = 'index.html';
+    }
+    function navigateToLandingPage(event) {
+      event.preventDefault();
+      window.location.href = 'landingpage.html';
+    }
+  </script>
 </body>
 </html>
