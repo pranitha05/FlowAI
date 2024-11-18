@@ -27,7 +27,7 @@ def run_app():
 
     cors_config = {
         r"*": {
-            "origins": [os.getenv("BASE_URL")],
+            "origins": [os.getenv("BASE_URL"), "http://127.0.0.1:3000"],
             "methods": ["GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"],
             "allow_headers": [
                 "Authorization",

@@ -1,0 +1,168 @@
+// auth.js
+import CONFIG from './config.js';
+
+document.addEventListener('DOMContentLoaded', () => {
+    // Tab functionality
+    const tabButtons = document.querySelectorAll('.tab-button');
+    const formSections = document.querySelectorAll('.form-section');
+    const backendUrl = CONFIG.BACKEND_BASE_URL;
+
+    tabButtons.forEach(button => {
+        button.addEventListener('click', () => {
+            // Remove active class from all buttons
+            tabButtons.forEach(btn => btn.classList.remove('active'));
+            // Add active class to clicked button
+            button.classList.add('active');
+
+            // Hide all form sections
+            formSections.forEach(section => section.classList.remove('active'));
+            // Show the target form section
+            const target = button.getAttribute('data-target');
+            document.getElementById(target).classList.add('active');
+        });
+    });
+
+    // Utility function to display messages
+    const displayMessage = (element, message, isSuccess = false) => {
+        element.textContent = message;
+        element.style.color = isSuccess ? 'green' : 'red';
+    };
+
+    // Login Form Submission
+    const loginForm = document.getElementById('loginForm');
+    const loginMessage = document.getElementById('loginMessage');
+
+    loginForm.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        displayMessage(loginMessage, '');
+
+        const identifier = document.getElementById('login-identifier').value.trim();
+        const password = document.getElementById('login-password').value;
+
+        if (!identifier || !password) {
+            displayMessage(loginMessage, 'Please fill in all fields.');
+            return;
+        }
+
+        try {
+            const response = await fetch(`${backendUrl}/user/login`, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ identifier, password })
+            });
+
+            const data = await response.json();
+
+            if (response.ok) {
+                // Save the token securely (consider using secure storage in production)
+                localStorage.setItem('access_token', data.access_token);
+                localStorage.setItem('userId', data.userId);
+                // Redirect to main application
+                window.location.href = '/landing.html';
+            } else {
+                displayMessage(loginMessage, data.msg || data.error || 'Login failed.');
+            }
+        } catch (error) {
+            displayMessage(loginMessage, 'An error occurred. Please try again.');
+            console.error('Login Error:', error);
+        }
+    });
+
+    // Signup Form Submission
+    const signupForm = document.getElementById('signupForm');
+    const signupMessage = document.getElementById('signupMessage');
+
+    signupForm.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        displayMessage(signupMessage, '');
+
+        const username = document.getElementById('signup-username').value.trim();
+        const email = document.getElementById('signup-email').value.trim();
+        const password = document.getElementById('signup-password').value;
+        const name = document.getElementById('signup-name').value.trim();
+        const age = parseInt(document.getElementById('signup-age').value, 10);
+        const gender = document.getElementById('signup-gender').value;
+        const fieldOfStudy = document.getElementById('signup-study').value.trim();
+        const preferredLanguage = document.getElementById('signup-language').value;
+
+        if (!username || !email || !password || !name || !age || !gender || !fieldOfStudy || !preferredLanguage) {
+            displayMessage(signupMessage, 'Please fill in all fields.');
+            return;
+        }
+
+        // Additional client-side validation can be added here
+
+        try {
+            const response = await fetch(`${backendUrl}/user/signup`, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ 
+                    username, 
+                    email, 
+                    password, 
+                    name, 
+                    age, 
+                    gender, 
+                    fieldOfStudy, 
+                    preferredLanguage 
+                })
+            });
+
+            const data = await response.json();
+
+            if (response.ok) {
+                // Optionally, auto-login the user after signup
+                localStorage.setItem('access_token', data.access_token);
+                localStorage.setItem('userId', data.userId);
+                // Redirect to main application
+                window.location.href = '/landing.html';
+            } else {
+                displayMessage(signupMessage, data.error || 'Signup failed.');
+            }
+        } catch (error) {
+            displayMessage(signupMessage, 'An error occurred. Please try again.');
+            console.error('Signup Error:', error);
+        }
+    });
+
+    // Forgot Password Form Submission
+    const forgotPasswordForm = document.getElementById('forgotPasswordForm');
+    const forgotPasswordMessage = document.getElementById('forgotPasswordMessage');
+
+    forgotPasswordForm.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        displayMessage(forgotPasswordMessage, '');
+
+        const email = document.getElementById('forgot-email').value.trim();
+
+        if (!email) {
+            displayMessage(forgotPasswordMessage, 'Please enter your email.');
+            return;
+        }
+
+        try {
+            const response = await fetch(`${backendUrl}/user/request_reset`, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ email })
+            });
+
+            const data = await response.json();
+
+            if (response.ok) {
+                displayMessage(forgotPasswordMessage, data.message || 'Reset link sent to your email.', true);
+            } else {
+                displayMessage(forgotPasswordMessage, data.error || 'Request failed.');
+            }
+        } catch (error) {
+            displayMessage(forgotPasswordMessage, 'An error occurred. Please try again.');
+            console.error('Forgot Password Error:', error);
+        }
+    });
+
+    // Google Login Button
+    const googleLoginBtn = document.getElementById('googleLoginBtn');
+    googleLoginBtn.addEventListener('click', () => {
+        window.location.href = `${backendUrl}/auth/google`;
+    });
+});
