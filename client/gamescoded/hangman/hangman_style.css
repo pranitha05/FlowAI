@@ -1,0 +1,179 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-color: #282c34;
+  color: #fff;
+}
+
+.container {
+  text-align: center;
+  width: 100%;
+  max-width: 800px;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+h1 {
+  color: #61dafb;
+  margin-bottom: 20px;
+}
+
+.game-container {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 40px;
+  width: 100%;
+  margin-bottom: 40px;
+  margin-right: 20px;
+}
+
+.word-and-buttons {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-right: 240px;
+  width: 100%;
+}
+
+.word-display {
+  font-size: 30px;
+  letter-spacing: 2px;
+  margin: 20px 0;
+  margin-right: 240px;
+  color: #61dafb;
+}
+
+.hangman-image {
+  width: 200px;
+  height: auto;
+  margin-right: 2px;
+}
+
+.letter-buttons {
+  display: grid;
+  grid-template-columns: repeat(13, 30px);
+  gap: 10px;
+  margin: 20px 0;
+  margin-right: 240px;
+  justify-content: center;
+}
+
+.letter-buttons button {
+  padding: 10px;
+  font-size: 16px;
+  cursor: pointer;
+  background-color: #fff;
+  border: 1px solid #61dafb;
+  border-radius: 4px;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+.letter-buttons button:hover {
+  background-color: #61dafb;
+  color: #fff;
+}
+
+.letter-buttons button.correct {
+  background-color: #28a745;
+  color: #fff;
+}
+
+.letter-buttons button.incorrect {
+  background-color: #dc3545;
+  color: #fff;
+}
+
+.replay-container {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  margin-top: 20px;
+}
+
+.replay-btn {
+  padding: 10px 20px;
+  font-size: 16px;
+  cursor: pointer;
+  background-color: #61dafb;
+  border: none;
+  border-radius: 4px;
+  color: #282c34;
+  transition: background-color 0.3s;
+}
+
+.replay-btn:hover {
+  background-color: #45a1d4;
+}
+
+.result-overlay {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.8);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  color: #fff;
+}
+
+.result-overlay p {
+  font-size: 24px;
+  margin-bottom: 20px;
+}
+
+.result-overlay button {
+  padding: 10px 20px;
+  font-size: 16px;
+  cursor: pointer;
+  background-color: #61dafb;
+  color: #282c34;
+  border: none;
+  border-radius: 4px;
+  transition: background-color 0.3s;
+}
+
+.result-overlay button:hover {
+  background-color: #45a1d4;
+}
+
+@media (max-width: 768px) {
+  .game-container {
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .hangman-image {
+    width: 150px;
+    margin-left: 0;
+  }
+
+  .letter-buttons {
+    grid-template-columns: repeat(10, 30px);
+  }
+
+  .word-display {
+    font-size: 22px;
+  }
+
+  .replay-btn {
+    font-size: 14px;
+  }
+}
