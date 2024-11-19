@@ -1,7 +1,7 @@
 body {
     margin: 0;
     font-family: 'Playfair Display', serif;
-    background-image: url('/static/bgimage.webp');
+    background-image: url('../images/bgimage.webp');
     background-size: cover;
     background-position: center;
     background-attachment: fixed;
