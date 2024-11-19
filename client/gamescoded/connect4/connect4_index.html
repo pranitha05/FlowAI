@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Connect Four Game</title>
+    <link rel="stylesheet" href="connect4_style.css" />
+  </head>
+  <body>
+    <div class="container">
+      <h1>Connect Four</h1>
+      <div class="mode-selection">
+        <button onclick="startGame('2P')" class="mode-btn" id="twoPlayerBtn">
+          2 Player
+        </button>
+        <button onclick="startGame('AI')" class="mode-btn" id="vsComputerBtn">
+          VS Computer
+        </button>
+      </div>
+      <div class="game-board" id="board"></div>
+      <div class="status" id="status"></div>
+
+      <!-- Separate Result Section -->
+      <div id="result" class="result">
+        <p id="result-message"></p>
+      </div>
+
+      <!-- Separate Replay Button -->
+      <div id="replay-btn-container" class="replay-btn-container">
+        <button class="replay-btn" onclick="resetGame()">Play Again</button>
+      </div>
+    </div>
+    <script src="connect4_script.js"></script>
+  </body>
+</html>
