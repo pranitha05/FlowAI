@@ -9,16 +9,15 @@
 </head>
 <body>
   <header>
-    <div class="logo">
-      <img src="../static/images/image.png" alt="FlowAI Logo" onclick="navigateToIndex()"> <!-- Clickable Logo -->
-      FlowAI
+    <div class="logo" onclick="navigateToIndex()">
+      <img src="../static/images/image.png" alt="FlowAI Logo"> FlowAI
     </div>
   </header>
+
   <main class="auth-container">
     <div class="tabs">
       <button class="tab-btn active" data-tab="login">Login</button>
       <button class="tab-btn" data-tab="signup">Signup</button>
-      <button class="tab-btn" data-tab="forgot-password">Forgot Password</button>
     </div>
 
     <!-- Login Form -->
@@ -34,21 +33,23 @@
           <label for="login-password">Password</label>
           <input type="password" id="login-password" name="password" required>
         </div>
+        <!-- Forgot Password Link -->
+        <p style="text-align: center; cursor: pointer; color: #007bff;" onclick="showResetPassword()">Forgot Password?</p>
         <button type="submit" class="btn">Login</button>
-        <div id="loginMessage" class="message"></div>
-        <!-- Forgot Password Form -->
-    <div class="form-section hidden" id="forgot-password">
-      <form id="forgotPasswordForm">
+      </form>
+    </div>
+
+    <!-- Reset Password Form -->
+    <div class="form-section hidden" id="reset-password">
+      <form id="resetPasswordForm" onsubmit="handleResetPassword(event)">
         <h2>Reset Password</h2>
         <p>Enter your email to receive reset instructions.</p>
         <div class="input-group">
-          <label for="forgot-email">Email</label>
-          <input type="email" id="forgot-email" name="email" required>
+          <label for="reset-email">Email</label>
+          <input type="email" id="reset-email" name="email" required>
         </div>
         <button type="submit" class="btn">Send Reset Link</button>
-        <div id="forgotPasswordMessage" class="message"></div>
-      </form>
-    </div>
+        <p style="text-align: center; cursor: pointer; color: #007bff;" onclick="showLogin()">Back to Login</p>
       </form>
     </div>
 
@@ -100,19 +101,52 @@
           </select>
         </div>
         <button type="submit" class="btn">Signup</button>
-        <div id="signupMessage" class="message"></div>
       </form>
     </div>
-
   </main>
+
   <script>
     function navigateToIndex() {
       window.location.href = 'index.html';
     }
+
     function navigateToLandingPage(event) {
       event.preventDefault();
       window.location.href = 'landingpage.html';
     }
+
+    // Show Reset Password Section
+    function showResetPassword() {
+      document.getElementById('login').classList.add('hidden');
+      document.getElementById('reset-password').classList.remove('hidden');
+    }
+
+    // Show Login Section
+    function showLogin() {
+      document.getElementById('reset-password').classList.add('hidden');
+      document.getElementById('login').classList.remove('hidden');
+    }
+
+    // Handle Reset Password Form Submission
+    function handleResetPassword(event) {
+      event.preventDefault();
+      alert('Password reset instructions sent to your email!');
+      showLogin();
+    }
+
+    // Tab Navigation
+    document.querySelectorAll('.tab-btn').forEach(btn => {
+      btn.addEventListener('click', function () {
+        document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+        this.classList.add('active');
+
+        const target = this.getAttribute('data-tab');
+        document.querySelectorAll('.form-section').forEach(section => {
+          section.classList.add('hidden');
+        });
+        document.getElementById(target).classList.remove('hidden');
+      });
+    });
   </script>
 </body>
 </html>
