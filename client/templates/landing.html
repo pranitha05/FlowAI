@@ -52,40 +52,54 @@
     height: 50px;
   }
 
-  nav #navbar-logout {
-    color: black;
-    text-decoration: none;
-    font-size: 1rem;
-    font-weight: 600;
-    padding: 10px 20px;
-    margin-right: 20px;
-    border: 2px solid white;
-    border-radius: 5px;
-    transition: background-color 0.3s ease;
-  }
+    /* Menu styles */
+    nav {
+      position: relative;
+    }
 
-  nav {
-    display: flex;
-    align-items: baseline;
-  }
+    nav a {
+      display: flex;
+      color: white;
+      text-decoration: none;
+      font-size: 1rem;
+      font-weight: 600;
+      padding: 10px 20px;
+      border: 2px solid white;
+      border-radius: 5px;
+      transition: background-color 0.3s ease;
+    }
 
-  .navbar-a {
-    color: black;
-    text-decoration: none;
-    font-size: 1rem;
-    font-weight: 600;
-    padding: 10px 20px;
-    transition: background-color 0.3s ease;
-  }
+    nav a:hover {
+      background-color: white;
+      color: #0d6efd;
+    }
 
-  nav a:hover {
-    background-color: white;
-    color: #000000;
-  }
+    nav .menu {
+      display: none;
+      position: absolute;
+      top: 40px;
+      right: 0;
+      background-color: rgba(0, 0, 0, 0.8);
+      border-radius: 8px;
+      padding: 10px;
+      width: 200px;
+    }
 
-  #navbar-logout:hover {
-    background-color: white;
-  }
+    nav:hover .menu {
+      display: block;
+    }
+
+    .menu a {
+      display: block;
+      padding: 10px;
+      color: white;
+      text-decoration: none;
+      font-weight: 500;
+    }
+
+    .menu a:hover {
+      background-color: #444;
+    }
 
   main {
     margin-top: 100px;
@@ -146,11 +160,13 @@
       FlowAI
     </div>
     <nav>
-      <a class="navbar-a" href="AI_agent.html">Create an AI Task Flow</a>
-      <a class="navbar-a" href="pomodoro_timer.html">Pomodoro Timer</a>
-      <a class="navbar-a" href="games.html">Games</a>
-      <a class="navbar-a" href="user_profile.html">Multilingual Support</a>
-      <a id="navbar-logout" href="{{ url_for('logout') }}">Logout</a>
+      <a href="#">Menu</a>
+      <div class="menu">
+        <a href="AI_agent.html">AI Task Flow</a>
+        <a href="games.html">Games</a>
+        <a href="user_profile.html">Multilingual Support</a>
+        <a href="#" onclick="logout()">Logout</a>
+      </div>
     </nav>
   </header>
   <main>
