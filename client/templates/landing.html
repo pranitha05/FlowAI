@@ -33,10 +33,8 @@
     top: 0;
     width: 100%;
     display: flex;
-    justify-content: space-around;
+    justify-content: space-between;
     padding: 20px;
-    background: rgba(0, 0, 0, 0.7);
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
   }
   
   header .logo {
@@ -44,49 +42,64 @@
     align-items: center;
     font-size: 1.8rem;
     font-weight: bold;
-    color: white;
+    color: black;
     cursor: pointer;
   }
   
   header .logo img {
     margin-right: 10px;
+    margin-left: 20px;
     height: 50px;
   }
 
-  nav #navbar-logout {
-    color: white;
-    text-decoration: none;
-    font-size: 1rem;
-    font-weight: 600;
-    padding: 10px 20px;
-    border: 2px solid white;
-    border-radius: 5px;
-    transition: background-color 0.3s ease;
-  }
+    /* Menu styles */
+    nav {
+      position: relative;
+    }
 
-  nav {
-    display: flex;
-    align-items: baseline;
-  }
+    nav a {
+      display: flex;
+      color: white;
+      text-decoration: none;
+      font-size: 1rem;
+      font-weight: 600;
+      padding: 10px 20px;
+      border: 2px solid white;
+      border-radius: 5px;
+      transition: background-color 0.3s ease;
+    }
 
-  .navbar-a {
-    color: white;
-    text-decoration: none;
-    font-size: 1rem;
-    font-weight: 600;
-    padding: 10px 20px;
-    transition: background-color 0.3s ease;
-  }
+    nav a:hover {
+      background-color: white;
+      color: #0d6efd;
+    }
 
-  nav a:hover {
-    background-color: white;
-    color: #000000;
-  }
+    nav .menu {
+      display: none;
+      position: absolute;
+      top: 40px;
+      right: 0;
+      background-color: rgba(0, 0, 0, 0.8);
+      border-radius: 8px;
+      padding: 10px;
+      width: 200px;
+    }
 
-  #navbar-logout:hover {
-    background-color: white;
-    color: #000000;
-  }
+    nav:hover .menu {
+      display: block;
+    }
+
+    .menu a {
+      display: block;
+      padding: 10px;
+      color: white;
+      text-decoration: none;
+      font-weight: 500;
+    }
+
+    .menu a:hover {
+      background-color: #444;
+    }
 
   main {
     margin-top: 100px;
@@ -111,6 +124,7 @@
   }
 
   .feature-card {
+    height: 175px;
     background: linear-gradient(180deg, rgb(206, 231, 255) 0%,rgb(250, 253, 255), rgba(206, 231, 255) 100%);
     border-radius: 10px;
     padding: 20px;
@@ -132,11 +146,6 @@
     font-size: 1rem;
   }
 
-  ul {
-    list-style-type: none;
-    padding: 0;
-  }
-
   footer {
     position: absolute;
     bottom: 20px;
@@ -151,11 +160,13 @@
       FlowAI
     </div>
     <nav>
-      <a class="navbar-a" href="{{ url_for('logout') }}">Create an AI Task Flow</a>
-      <a class="navbar-a" href="{{ url_for('logout') }}">Pomodoro Timer</a>
-      <a class="navbar-a" href="{{ url_for('logout') }}">Games</a>
-      <a class="navbar-a" href="{{ url_for('logout') }}">My Profile</a>
-      <a id="navbar-logout" href="{{ url_for('logout') }}">Logout</a>
+      <a href="#">Menu</a>
+      <div class="menu">
+        <a href="AI_agent.html">AI Task Flow</a>
+        <a href="games.html">Games</a>
+        <a href="user_profile.html">Multilingual Support</a>
+        <a href="#" onclick="logout()">Logout</a>
+      </div>
     </nav>
   </header>
   <main>
@@ -163,25 +174,20 @@
     <p>Choose one of the features below to get started.</p>
     <div class="features">
       <div class="feature-card" style="cursor: pointer" onclick="window.location.href='AI_agent.html'">
-        <h3>Create your own AI-Powered Task Flow</h3>
-        <p>Create customized task flows with ease. Let AI guide you step by step.</p>
+        <h3>Create your own AI-powered Task Flow</h3>
+        <p>Create customized task flows with ease. Let AI guide you step-by-step.</p>
       </div>
       <div class="feature-card" style="cursor: pointer" onclick="window.location.href='pomodoro_timer.html'">
         <h3>Start a Pomodoro Timer</h3>
         <p>Boost your productivity with focused study sessions.</p>
       </div>
-      <div class="feature-card">
+      <div class="feature-card" style="cursor: pointer" onclick="window.location.href='games.html'">
         <h3>Play some Games</h3>
-        <p>Choose a game to play:</p>
-        <ul>
-          <li><a href="../gamescoded/connect4/connect4_index.html">Connect 4</a></li>
-          <li><a href="../gamescoded/hangman/hangman_index.html">Hangman</a></li>
-          <li><a href="../gamescoded/tictctoe/tictactoe_index.html">Tic-Tac-Toe</a></li>
-        </ul>
+        <p>Relax and take a break with some fun games like Connect 4, Hangman, and Tic-Tac-Toe.</p>
       </div>
       <div class="feature-card" style="cursor: pointer" onclick="window.location.href='user_profile.html'">
         <h3>My Profile</h3>
-        <p>Change your profile picture, see your study session records, and more.</p>
+        <p>Change your profile picture, view your study session records, and more.</p>
       </div>
     </div>
   </main>
