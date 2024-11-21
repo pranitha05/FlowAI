@@ -13,12 +13,6 @@
   <script src="https://cdn.jsdelivr.net/npm/particles.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r121/three.min.js"></script>
   <style>
-    * {
-      font-family: "Livvic", serif;
-      font-weight: 400;
-      font-style: normal;
-    }
-
     body {
       margin: 0;
       font-family: 'Playfair Display', serif;
@@ -60,54 +54,54 @@
     height: 50px;
   }
 
-    /* Menu styles */
-    nav {
-      position: relative;
-    }
+  /* Menu styles */
+  nav {
+    position: relative;
+  }
 
-    nav a {
-      display: flex;
-      color: white;
-      text-decoration: none;
-      font-size: 1rem;
-      font-weight: 600;
-      padding: 10px 20px;
-      border: 2px solid white;
-      border-radius: 5px;
-      transition: background-color 0.3s ease;
-    }
+  nav a {
+    display: flex;
+    color: white;
+    text-decoration: none;
+    font-size: 1rem;
+    font-weight: 600;
+    padding: 10px 20px;
+    border: 2px solid white;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+  }
 
-    nav a:hover {
-      background-color: white;
-      color: #0d6efd;
-    }
+  nav a:hover {
+    background-color: white;
+    color: #0d6efd;
+  }
 
-    nav .menu {
-      display: none;
-      position: absolute;
-      top: 40px;
-      right: 0;
-      background-color: rgba(0, 0, 0, 0.8);
-      border-radius: 8px;
-      padding: 10px;
-      width: 200px;
-    }
+  nav .menu {
+    display: none;
+    position: absolute;
+    top: 40px;
+    right: 0;
+    background-color: rgba(0, 0, 0, 0.8);
+    border-radius: 8px;
+    padding: 10px;
+    width: 200px;
+  }
 
-    nav:hover .menu {
-      display: block;
-    }
+  nav:hover .menu {
+    display: block;
+  }
 
-    .menu a {
-      display: block;
-      padding: 10px;
-      color: white;
-      text-decoration: none;
-      font-weight: 500;
-    }
+  .menu a {
+    display: block;
+    padding: 10px;
+    color: white;
+    text-decoration: none;
+    font-weight: 500;
+  }
 
-    .menu a:hover {
-      background-color: #444;
-    }
+  .menu a:hover {
+    background-color: #444;
+  }
 
   main {
     flex: 1;
@@ -133,7 +127,7 @@
   }
 
   .feature-card {
-    height: 175px;
+    min-height: 175px;
     background: linear-gradient(180deg, rgb(206, 231, 255) 0%,rgb(250, 253, 255), rgba(206, 231, 255) 100%);
     border-radius: 10px;
     padding: 20px;

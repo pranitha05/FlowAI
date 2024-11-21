@@ -1,11 +1,11 @@
 body {
   margin: 0;
   font-family: 'Playfair Display', serif;
-  background-image: url('/client/static/images/bgimage.webp');
+  background: linear-gradient(135deg, rgba(222,239,255,1) 0%, rgba(152,190,222,1) 100%);
   background-size: cover;
   background-position: center;
   background-attachment: fixed;
-  color: white;
+  color: black;
 }
 
 header {
@@ -23,7 +23,7 @@ header .logo {
   align-items: center;
   font-size: 1.8rem;
   font-weight: bold;
-  color: white;
+  color: black;
   cursor: pointer;
 }
 
@@ -57,7 +57,7 @@ header .logo img {
   padding: 10px 30px;
   margin: 0 10px;
   background: none;
-  color: white;
+  color: rgb(255, 255, 255);
   border: 2px solid white;
   border-radius: 30px;
   cursor: pointer;
