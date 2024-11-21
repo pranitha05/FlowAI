@@ -8,6 +8,9 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Architects+Daughter&family=Hanken+Grotesk:ital,wght@0,100..900;1,100..900&family=Livvic:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,900&family=Quicksand:wght@300..700&display=swap" rel="stylesheet">
+  <!-- Libraries -->
+  <script src="https://cdn.jsdelivr.net/npm/particles.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r121/three.min.js"></script>
   <style>
     * {
       font-family: "Livvic", serif;
@@ -20,12 +23,16 @@
       font-family: 'Playfair Display', serif;
       text-align: center;
       display: flex;
+      position: relative;
       flex-direction: column;
       align-items: center;
-      background: linear-gradient(135deg,  rgba(222,239,255,1) 0%,rgba(152,190,222,1) 100%);
-      background-size: cover;  
-      background-position: center;  
-      background-attachment: fixed;  
+      min-height: 100vh;
+    }
+
+    header, main, footer {
+      position: relative;
+      z-index: 1;
+      background: transparent;
     }
 
     header {
@@ -102,6 +109,7 @@
     }
 
   main {
+    flex: 1;
     margin-top: 100px;
     text-align: center;
   }
@@ -151,9 +159,48 @@
     bottom: 20px;
     font-size: 0.9rem;
   }
+  #particles-js {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+  top: 0;
+  left: 0;
+  background: linear-gradient(135deg, rgba(222,239,255,1) 0%, rgba(152,190,222,1) 100%);
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+}
+
+    /* Keyframes for animations */
+    @keyframes fadeInDown {
+      from {
+        opacity: 0;
+        transform: translateY(-20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
   </style>
 </head>
-<body>
+<body>  
+
+<!-- Particles.js Background -->
+<div id="particles-js"></div>
+
   <header>
     <div class="logo">
       <img src="../static/images/image.png" alt="FlowAI Logo"> <!-- Logo image -->
@@ -194,5 +241,49 @@
   <footer>
     © 2024 FlowAI. All rights reserved.
   </footer>
+<!-- Initialize particles.js with enhanced configuration -->
+<script>
+    particlesJS('particles-js', {
+      "particles": {
+        "number": {
+          "value": 60,
+          "density": {
+            "enable": true,
+            "value_area": 800
+          }
+        },
+        "color": {
+          "value": "#ffffff"
+        },
+        "shape": {
+          "type": "circle"
+        },
+        "opacity": {
+          "value": 0.8
+        },
+        "size": {
+          "value": 3,
+          "random": true
+        },
+        "line_linked": {
+          "enable": true,
+          "distance": 150,
+          "color": "#ffffff",
+          "opacity": 0.4,
+          "width": 1
+        },
+        "move": {
+          "enable": true,
+          "speed": 3
+        }
+      }
+    });
+
+    // Logout Function (Placeholder)
+    function logout() {
+      // Add logout logic here
+      alert('Logout functionality to be implemented.');
+    }
+  </script>
 </body>
 </html>
