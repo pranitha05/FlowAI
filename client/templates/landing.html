@@ -416,87 +416,153 @@
     © 2024 FlowAI. All rights reserved.
   </footer>
 
-  
+  [Previous HTML remains the same, only updating the script section]
 
   <script>
-    // Initialize particles.js with blue-themed configuration
-    particlesJS('particles-js', {
-      "particles": {
-        "number": {
-          "value": 60,
-          "density": {
-            "enable": true,
-            "value_area": 800
-          }
-        },
-        "color": {
-          "value": "#4287f5"  // Soft blue for light theme
-        },
-        "shape": {
-          "type": "circle"
-        },
-        "opacity": {
-          "value": 0.6,
-          "random": true
-        },
-        "size": {
-          "value": 3,
-          "random": true
-        },
-        "line_linked": {
+    // Initialize particles.js
+particlesJS('particles-js', {
+  "particles": {
+    "number": {
+      "value": 60,
+      "density": {
+        "enable": true,
+        "value_area": 800
+      }
+    },
+    "color": {
+      // Color changes based on theme
+      "value": document.documentElement.getAttribute('data-theme') === 'light' ? "#4287f5" : "#1ABC9C"
+    },
+    "shape": {
+      "type": "circle"
+    },
+    "opacity": {
+      "value": 0.6,
+      "random": true
+    },
+    "size": {
+      "value": 3,
+      "random": true
+    },
+    "line_linked": {
+      "enable": true,
+      "distance": 150,
+      "color": document.documentElement.getAttribute('data-theme') === 'light' ? "#5ca4ff" : "#1ABC9C",
+      "opacity": 0.4,
+      "width": 1
+    },
+    "move": {
+      "enable": true,
+      "speed": 2,
+      "direction": "top-right",
+      "random": true,
+      "out_mode": "out"
+    }
+  },
+  "interactivity": {
+    "detect_on": "canvas",
+    "events": {
+      "onhover": {
+        "enable": true,
+        "mode": "repulse"
+      },
+      "onclick": {
+        "enable": true,
+        "mode": "push"
+      },
+      "resize": true
+    },
+    "modes": {
+      "repulse": {
+        "distance": 100,
+        "duration": 0.4
+      },
+      "push": {
+        "particles_nb": 4
+      }
+    }
+  },
+  "retina_detect": true
+});
+
+// Theme toggle function
+function toggleTheme() {
+  const html = document.documentElement;
+  const currentTheme = html.getAttribute('data-theme');
+  const newTheme = currentTheme === 'light' ? 'dark' : 'light';
+  html.setAttribute('data-theme', newTheme);
+  
+  // Reinitialize particles.js with new theme colors
+  particlesJS('particles-js', {
+    "particles": {
+      "number": {
+        "value": 60,
+        "density": {
           "enable": true,
-          "distance": 150,
-          "color": "#5ca4ff", // Lighter blue for connections
-          "opacity": 0.4,
-          "width": 1
-        },
-        "move": {
-          "enable": true,
-          "speed": 2,
-          "direction": "top-right",
-          "random": true,
-          "out_mode": "out"
+          "value_area": 800
         }
       },
-      "interactivity": {
-        "detect_on": "canvas",
-        "events": {
-          "onhover": {
-            "enable": true,
-            "mode": "repulse"
-          },
-          "onclick": {
-            "enable": true,
-            "mode": "push"
-          },
-          "resize": true
-        },
-        "modes": {
-          "repulse": {
-            "distance": 100,
-            "duration": 0.4
-          },
-          "push": {
-            "particles_nb": 4
-          }
-        }
+      "color": {
+        "value": newTheme === 'light' ? "#4287f5" : "#1ABC9C"
       },
-      "retina_detect": true
-    });
+      "shape": {
+        "type": "circle"
+      },
+      "opacity": {
+        "value": 0.6,
+        "random": true
+      },
+      "size": {
+        "value": 3,
+        "random": true
+      },
+      "line_linked": {
+        "enable": true,
+        "distance": 150,
+        "color": newTheme === 'light' ? "#5ca4ff" : "#1ABC9C",
+        "opacity": 0.4,
+        "width": 1
+      },
+      "move": {
+        "enable": true,
+        "speed": 2,
+        "direction": "top-right",
+        "random": true,
+        "out_mode": "out"
+      }
+    },
+    "interactivity": {
+      "detect_on": "canvas",
+      "events": {
+        "onhover": {
+          "enable": true,
+          "mode": "repulse"
+        },
+        "onclick": {
+          "enable": true,
+          "mode": "push"
+        },
+        "resize": true
+      },
+      "modes": {
+        "repulse": {
+          "distance": 100,
+          "duration": 0.4
+        },
+        "push": {
+          "particles_nb": 4
+        }
+      }
+    },
+    "retina_detect": true
+  });
+}
 
-    // Theme toggle function
-    function toggleTheme() {
-      const html = document.documentElement;
-      const currentTheme = html.getAttribute('data-theme');
-      const newTheme = currentTheme === 'light' ? 'dark' : 'light';
-      html.setAttribute('data-theme', newTheme);
-    }
-
-    // Logout Function (Placeholder)
-    function logout() {
-      // Add logout logic here
-      alert('Logout functionality to be implemented.');
-    }
+// Logout Function (Placeholder)
+function logout() {
+  // Add logout logic here
+  alert('Logout functionality to be implemented.');
+}
   </script>
 </body>
 </html>
