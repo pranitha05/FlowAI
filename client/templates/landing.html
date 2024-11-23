@@ -126,23 +126,27 @@
 
     .slider:before {
       position: absolute;
-      content: "";
+      content: "🌚";
       height: 18px;
       width: 18px;
       left: 3px;
       bottom: 3px;
-      background-color: white;
+      background: transparent;
       transition: 0.4s;
       border-radius: 50%;
-    }
-
-    input:checked + .slider {
-      background-color: var(--accent-color);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 16px;
     }
 
     input:checked + .slider:before {
+      content: "🌝";
       transform: translateX(26px);
+      background: transparent;
     }
+
+    
 
     /* Menu styles */
     nav {
@@ -153,29 +157,27 @@
       display: flex;
       color: var(--primary-color);
       text-decoration: none;
-      font-size: 1rem;
+      font-size: 1rem; 
       font-weight: 600;
       padding: 10px 20px;
-      border: 2px solid var(--primary-color);
-      border-radius: 5px;
       transition: background-color 0.3s ease, color 0.3s ease;
+      border: none; 
     }
 
     [data-theme="light"] nav a {
       color: black;
-      border: 2px solid black;
+      border: none; 
     }
 
     nav a:hover {
-      background-color: var(--primary-color);
-      color: var(--background-color);
+      background-color: transparent; 
+      color: var(--accent-color); 
     }
 
     [data-theme="light"] nav a:hover {
-      background-color: black;
-      color: white;
-    }
-
+      background-color: transparent;
+      color: var(--accent-color);
+    }    
     nav .menu {
       display: none;
       position: absolute;
@@ -379,13 +381,19 @@
       <img src="../static/images/image.png" alt="FlowAI Logo">
       FlowAI
     </div>
+    <div style="display: flex; align-items: center; gap: 20px;">
+      <div class="theme-toggle">
+        <label class="switch">
+          <input type="checkbox" onclick="toggleTheme()">
+          <span class="slider"></span>
+        </label>
+      </div>
     <nav>
-      <a href="#">Menu</a>
+      <a href="#">☰</a>
       <div class="menu">
         <a href="AI_agent.html">AI Task Flow</a>
         <a href="games.html">Games</a>
         <a href="user_profile.html">Multilingual Support</a>
-        <a href="#" onclick="toggleTheme()">Switch Mode</a>
         <a href="#" onclick="logout()">Logout</a>
       </div>
     </nav>
