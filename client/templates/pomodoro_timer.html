@@ -1,201 +1,24 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="dark">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Pomodoro Timer - FlowAI</title>
   <link rel="stylesheet" href="../static/css/main.css">
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Poppins:wght@400;600&display=swap" rel="stylesheet">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Architects+Daughter&family=Hanken+Grotesk:ital,wght@0,100..900;1,100..900&family=Livvic:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,900&family=Quicksand:wght@300..700&display=swap" rel="stylesheet">
   <!-- Libraries -->
   <script src="https://cdn.jsdelivr.net/npm/particles.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r121/three.min.js"></script>
-  <style>
-    body {
-      margin: 0;
-      font-family: 'Playfair Display', serif;
-      text-align: center;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      background: linear-gradient(135deg, rgba(222,239,255,1) 0%, rgba(152,190,222,1) 100%);
-      background-size: cover;
-      background-position: center;
-      background-attachment: fixed;
-      color: black;
-    }
-
-    header {
-      position: absolute;
-      top: 20px;
-      width: 100%;
-      display: flex;
-      justify-content: space-between;
-      padding: 0 30px;
-    }
-
-    header .logo {
-      display: flex;
-      align-items: center;
-      font-size: 1.5rem;
-      font-weight: bold;
-      color: black;
-    }
-
-    header .logo img {
-      margin-right: 10px;
-      height: 50px;
-    }
-
-    /* Menu styles */
-    nav {
-      position: relative;
-    }
-
-    nav a {
-      color: white;
-      text-decoration: none;
-      font-size: 1rem;
-      font-weight: 600;
-      padding: 10px 20px;
-      border: 2px solid white;
-      border-radius: 5px;
-      transition: background-color 0.3s ease;
-    }
-
-    nav a:hover {
-      background-color: white;
-      color: #0d6efd;
-    }
-
-    nav .menu {
-      display: none;
-      position: absolute;
-      top: 40px;
-      right: 0;
-      background-color: black;
-      border-radius: 8px;
-      padding: 10px;
-      width: 200px;
-    }
-
-    nav:hover .menu {
-      display: block;
-    }
-
-    .menu a {
-      display: block;
-      padding: 10px;
-      color: white;
-      text-decoration: none;
-      font-weight: 500;
-    }
-
-    .menu a:hover {
-      background-color: #444;
-    }
-
-    main {
-      margin-top: 100px;
-    }
-
-    h1 {
-      font-size: 3rem;
-      margin-bottom: 10px;
-      color: black;
-    }
-
-    .timer {
-      font-size: 4rem;
-      font-weight: bold;
-      margin-bottom: 20px;
-      color: black;    
-    }
-
-    .status-message {
-      font-size: 1.5rem;
-      color: rgb(255, 252, 252);
-      margin-top: 20px;
-    }
-
-    .button-container {
-      display: flex;
-      justify-content: center;
-      gap: 30px;
-      margin-top: 30px;
-    }
-
-    .button-container button {
-      padding: 15px 30px;
-      font-size: 1.2rem;
-      background-color: #0d6efd;
-      color: white;
-      border: none;
-      border-radius: 5px;
-      cursor: pointer;
-      transition: background-color 0.3s ease;
-    }
-
-    .button-container button:hover {
-      background-color: #0056b3;
-    }
-
-    .input-container {
-      margin-top: 50px;
-      display: flex;
-      gap: 30px;
-      justify-content: center;
-    }
-
-    .input-container input {
-      padding: 10px;
-      font-size: 1.2rem;
-      border-radius: 5px;
-      border: 1px solid #ddd;
-      width: 80px;
-      text-align: center;
-    }
-
-    .input-container label {
-      color: black;
-      font-size: 1.2rem;
-    }
-
-    .progress-bar-container {
-      margin-top: 30px;
-    }
-
-    .progress-bar {
-      width: 100%;
-      height: 20px;
-      background-color: #ddd;
-      border-radius: 10px;
-      margin-bottom: 20px;
-      overflow: hidden;
-    }
-
-    .progress {
-      height: 100%;
-      width: 0;
-      background-color: #0d6efd;
-      transition: width 1s ease;
-    }
-
-    footer {
-      position: absolute;
-      bottom: 20px;
-      font-size: 0.9rem;
-      color: rgb(255, 255, 255);
-    }
-  </style>
+  <script src="../static/js/index.js" defer></script>
+  <script src="../static/js/pomodoro.js" defer></script>
 </head>
 <body>
+  <div id="particles-js"></div>
+
   <header>
-    <div class="logo">
-      <img src="../static/images/image.png" alt="FlowAI Logo">
-      FlowAI
+    <div class="logo" onclick="navigateToIndex()">
+      <img src="../static/images/image.png" alt="FlowAI Logo"> FlowAI
     </div>
     <nav>
       <a href="#">Menu</a>
@@ -206,6 +29,12 @@
         <a href="#" onclick="logout()">Logout</a>
       </div>
     </nav>
+    <div class="theme-toggle">
+      <label class="switch">
+        <input type="checkbox" id="theme-switch">
+        <span class="slider"></span>
+      </label>
+    </div>
   </header>
 
   <main>
@@ -222,10 +51,9 @@
     </div>
 
     <div class="timer" id="timerDisplay">25:00</div>
-      <div class="progress-bar-container">
-        <div class="progress-bar">
-          <div class="progress" id="progress"></div>
-        </div>
+    <div class="progress-bar-container">
+      <div class="progress-bar">
+        <div class="progress" id="progress"></div>
       </div>
     </div>
 
@@ -243,112 +71,5 @@
   </footer>
 
   <audio id="dingSound" src="../static/sounds/ding.mp3"></audio>
-
-  <script>
-    let timer;
-    let isRunning = false;
-    let isPaused = false;
-    let isStudySession = true;
-    let studyTime = 25 * 60; // Default study time in seconds
-    let breakTime = 5 * 60;  // Default break time in seconds
-    let timeLeft = studyTime;
-
-    const timerDisplay = document.getElementById("timerDisplay");
-    const startBtn = document.getElementById("startBtn");
-    const pauseBtn = document.getElementById("pauseBtn");
-    const resetBtn = document.getElementById("resetBtn");
-    const progress = document.getElementById("progress");
-    const statusMessage = document.getElementById("statusMessage");
-    const dingSound = document.getElementById("dingSound");
-
-    // Update the timer display
-    function formatTime(seconds) {
-      const minutes = Math.floor(seconds / 60);
-      const secondsLeft = seconds % 60;
-      return `${String(minutes).padStart(2, '0')}:${String(secondsLeft).padStart(2, '0')}`;
-    }
-
-    // Update progress bar
-    function updateProgressBar(totalTime, timeLeft) {
-      const progressPercentage = (timeLeft / totalTime) * 100;
-      progress.style.width = `${progressPercentage}%`;
-    }
-
-    // Switch session (study/break)
-    function switchSession() {
-      if (isStudySession) {
-        timeLeft = breakTime;
-        isStudySession = false;
-        statusMessage.textContent = "Congrats! Time for a break!";
-      } else {
-        timeLeft = studyTime;
-        isStudySession = true;
-        statusMessage.textContent = "Time to study! Get back to work!";
-      }
-      dingSound.play();
-      updateProgressBar(isStudySession ? studyTime : breakTime, timeLeft);
-    }
-
-    // Start the timer
-    function startTimer() {
-      if (isRunning) return;
-      isRunning = true;
-      startBtn.disabled = true;
-      pauseBtn.disabled = false;
-
-      timer = setInterval(() => {
-        timeLeft--;
-        timerDisplay.textContent = formatTime(timeLeft);
-        updateProgressBar(isStudySession ? studyTime : breakTime, timeLeft);
-
-        if (timeLeft <= 0) {
-          clearInterval(timer);
-          switchSession();
-          startTimer();
-        }
-      }, 1000);
-    }
-
-    // Pause the timer
-    function pauseTimer() {
-      clearInterval(timer);
-      isRunning = false;
-      startBtn.disabled = false;
-      pauseBtn.disabled = true;
-    }
-
-    // Reset the timer
-    function resetTimer() {
-      clearInterval(timer);
-      isRunning = false;
-      startBtn.disabled = false;
-      pauseBtn.disabled = true;
-      statusMessage.textContent = "";
-      timeLeft = studyTime;
-      timerDisplay.textContent = formatTime(timeLeft);
-      progress.style.width = '0%';
-    }
-
-    // Event listeners for buttons
-    startBtn.addEventListener("click", startTimer);
-    pauseBtn.addEventListener("click", pauseTimer);
-    resetBtn.addEventListener("click", resetTimer);
-
-    // Event listeners for study and break time inputs
-    document.getElementById("study-time").addEventListener("change", function() {
-      studyTime = parseInt(this.value) * 60;
-      timeLeft = studyTime;
-      timerDisplay.textContent = formatTime(timeLeft);
-    });
-
-    document.getElementById("break-time").addEventListener("change", function() {
-      breakTime = parseInt(this.value) * 60;
-    });
-
-    // Logout functionality (redirect to index.html)
-    function logout() {
-      window.location.href = "index.html";
-    }
-  </script>
 </body>
 </html>
