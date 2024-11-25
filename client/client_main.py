@@ -26,6 +26,6 @@ def ai_agent():
 
 """ Step 4: Start the server """
 if __name__ == '__main__':
-    HOST = os.getenv("FLASK_RUN_HOST") 
-    PORT = os.getenv("FLASK_RUN_PORT") 
+    HOST = os.getenv("FLASK_RUN_HOST", "127.0.0.1")
+    PORT = int(os.getenv("FLASK_RUN_PORT", 3000))
     app.run(debug=True, host=HOST, port=PORT)

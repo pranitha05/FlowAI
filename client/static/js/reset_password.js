@@ -1,9 +1,10 @@
 // reset_password.js
+import CONFIG from './config.js';
 
 document.addEventListener('DOMContentLoaded', () => {
     const resetPasswordForm = document.getElementById('resetPasswordForm');
     const resetPasswordMessage = document.getElementById('resetPasswordMessage');
-  
+    const backendUrl = CONFIG.BACKEND_BASE_URL || 'http://localhost:8000';
     // Extract token from URL
     const urlParams = new URLSearchParams(window.location.search);
     const token = urlParams.get('token');
@@ -34,7 +35,7 @@ document.addEventListener('DOMContentLoaded', () => {
       }
   
       try {
-        const response = await fetch(`http://localhost:8000/user/reset_password/${token}`, { // Update with BACKEND_BASE_URL
+        const response = await fetch(`${backendUrl}/user/reset_password/${token}`, { // Update with BACKEND_BASE_URL
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({ password })
@@ -47,7 +48,7 @@ document.addEventListener('DOMContentLoaded', () => {
           resetPasswordMessage.textContent = data.message || 'Password has been reset successfully.';
           // Redirect to login after a delay
           setTimeout(() => {
-            window.location.href = 'auth.html';
+            window.location.href = '/auth';
           }, 3000);
         } else {
           resetPasswordMessage.style.color = 'red';

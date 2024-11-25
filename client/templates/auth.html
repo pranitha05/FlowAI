@@ -14,6 +14,7 @@
   <script src="https://cdn.jsdelivr.net/npm/particles.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r121/three.min.js"></script>
   <script src="../static/js/index.js" defer></script>
+  <script type="module" src="../static/js/auth.js"></script>
 </head>
 <body>
   <div id="particles-js"></div>
@@ -39,131 +40,96 @@
 
     <!-- Login Form -->
     <div class="form-section" id="login">
-      <form id="loginForm" onsubmit="navigateToLandingPage(event)">
-        <h2>Welcome Back!</h2>
-        <p>Access your personalized FlowAI workspace.</p>
-        <div class="input-group">
-          <label for="login-email">Email</label>
-          <input type="email" id="login-email" name="email" required>
-        </div>
-        <div class="input-group">
-          <label for="login-password">Password</label>
-          <input type="password" id="login-password" name="password" required>
-        </div>
-        <!-- Forgot Password Link -->
-        <p style="text-align: center; cursor: pointer; color: #007bff;" onclick="showResetPassword()">Forgot Password?</p>
-        <button type="submit" class="btn">Login</button>
-      </form>
-    </div>
+    <form id="loginForm">
+      <h2>Welcome Back!</h2>
+      <p>Access your personalized FlowAI workspace.</p>
+      <div class="input-group">
+        <label for="login-identifier">Email or Username</label>
+        <input type="text" id="login-identifier" name="identifier" required>
+      </div>
+      <div class="input-group">
+        <label for="login-password">Password</label>
+        <input type="password" id="login-password" name="password" required>
+      </div>
+      <!-- Forgot Password Link -->
+      <p style="text-align: center; cursor: pointer; color: #007bff;" onclick="showResetPassword()">Forgot Password?</p>
+      <!-- Add an element to display messages -->
+      <p id="loginMessage" style="color: red;"></p>
+      <button type="submit" class="btn">Login</button>
+    </form>
+  </div>
 
-    <!-- Reset Password Form -->
-    <div class="form-section hidden" id="reset-password">
-      <form id="resetPasswordForm" onsubmit="handleResetPassword(event)">
-        <h2>Reset Password</h2>
-        <p>Enter your email to receive reset instructions.</p>
-        <div class="input-group">
-          <label for="reset-email">Email</label>
-          <input type="email" id="reset-email" name="email" required>
-        </div>
-        <button type="submit" class="btn">Send Reset Link</button>
-        <p style="text-align: center; cursor: pointer; color: #007bff;" onclick="showLogin()">Back to Login</p>
-      </form>
-    </div>
+  <!-- Reset Password Form -->
+  <div class="form-section hidden" id="reset-password">
+    <form id="forgotPasswordForm">
+      <h2>Reset Password</h2>
+      <p>Enter your email to receive reset instructions.</p>
+      <div class="input-group">
+        <label for="forgot-email">Email</label>
+        <input type="email" id="forgot-email" name="email" required>
+      </div>
+      <!-- Add an element to display messages -->
+      <p id="forgotPasswordMessage" style="color: red;"></p>
+      <button type="submit" class="btn">Send Reset Link</button>
+      <p style="text-align: center; cursor: pointer; color: #007bff;" onclick="showLogin()">Back to Login</p>
+    </form>
+  </div>
 
-    <!-- Signup Form -->
-    <div class="form-section hidden" id="signup">
-      <form id="signupForm" onsubmit="navigateToLandingPage(event)">
-        <h2>Join FlowAI</h2>
-        <p>Create an account and transform productivity with AI.</p>
-        <div class="input-group">
-          <label for="signup-username">Username</label>
-          <input type="text" id="signup-username" name="username" required>
-        </div>
-        <div class="input-group">
-          <label for="signup-email">Email</label>
-          <input type="email" id="signup-email" name="email" required>
-        </div>
-        <div class="input-group">
-          <label for="signup-password">Password</label>
-          <input type="password" id="signup-password" name="password" required>
-        </div>
-        <div class="input-group">
-          <label for="signup-name">Name</label>
-          <input type="text" id="signup-name" name="name" required>
-        </div>
-        <div class="input-group">
-          <label for="signup-age">Age</label>
-          <input type="number" id="signup-age" name="age" min="18" required>
-        </div>
-        <div class="input-group">
-          <label for="signup-gender">Gender</label>
-          <select id="signup-gender" name="gender" required>
-            <option value="" disabled selected>Select your gender</option>
-            <option value="male">Male</option>
-            <option value="female">Female</option>
-            <option value="non-binary">Non-Binary</option>
-            <option value="prefer-not-to-say">Prefer Not to Say</option>
-          </select>
-        </div>
-        <div class="input-group">
-          <label for="signup-language">Preferred Language</label>
-          <select id="signup-language" name="preferredLanguage" required>
-            <option value="" disabled selected>Select language</option>
-            <option value="en">English</option>
-            <option value="ta">Tamil</option>
-            <option value="hi">Hindi</option>
-            <option value="ml">Malayalam</option>
-            <option value="fr">French</option>
-            <option value="zh">Chinese</option>
-          </select>
-        </div>
-        <button type="submit" class="btn">Signup</button>
-      </form>
-    </div>
-  </main>
-
-  <script>
-    function navigateToIndex() {
-      window.location.href = 'index.html';
-    }
-
-    function navigateToLandingPage(event) {
-      event.preventDefault();
-      window.location.href = 'landingpage.html';
-    }
-
-    // Show Reset Password Section
-    function showResetPassword() {
-      document.getElementById('login').classList.add('hidden');
-      document.getElementById('reset-password').classList.remove('hidden');
-    }
-
-    // Show Login Section
-    function showLogin() {
-      document.getElementById('reset-password').classList.add('hidden');
-      document.getElementById('login').classList.remove('hidden');
-    }
-
-    // Handle Reset Password Form Submission
-    function handleResetPassword(event) {
-      event.preventDefault();
-      alert('Password reset instructions sent to your email!');
-      showLogin();
-    }
-
-    // Tab Navigation
-    document.querySelectorAll('.tab-btn').forEach(btn => {
-      btn.addEventListener('click', function () {
-        document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
-        this.classList.add('active');
-
-        const target = this.getAttribute('data-tab');
-        document.querySelectorAll('.form-section').forEach(section => {
-          section.classList.add('hidden');
-        });
-        document.getElementById(target).classList.remove('hidden');
-      });
-    });
-  </script>
+  <!-- Signup Form -->
+  <div class="form-section hidden" id="signup">
+    <form id="signupForm">
+      <h2>Join FlowAI</h2>
+      <p>Create an account and transform productivity with AI.</p>
+      <div class="input-group">
+        <label for="signup-username">Username</label>
+        <input type="text" id="signup-username" name="username" required>
+      </div>
+      <div class="input-group">
+        <label for="signup-email">Email</label>
+        <input type="email" id="signup-email" name="email" required>
+      </div>
+      <div class="input-group">
+        <label for="signup-password">Password</label>
+        <input type="password" id="signup-password" name="password" required>
+      </div>
+      <div class="input-group">
+        <label for="signup-name">Name</label>
+        <input type="text" id="signup-name" name="name" required>
+      </div>
+      <div class="input-group">
+        <label for="signup-age">Age</label>
+        <input type="number" id="signup-age" name="age" min="18" required>
+      </div>
+      <div class="input-group">
+        <label for="signup-gender">Gender</label>
+        <select id="signup-gender" name="gender" required>
+          <option value="" disabled selected>Select your gender</option>
+          <option value="male">Male</option>
+          <option value="female">Female</option>
+          <option value="non-binary">Non-Binary</option>
+          <option value="prefer-not-to-say">Prefer Not to Say</option>
+        </select>
+      </div>
+      <div class="input-group">
+        <label for="signup-study">Field of Study</label>
+        <input type="text" id="signup-study" name="fieldOfStudy" required>
+      </div>
+      <div class="input-group">
+        <label for="signup-language">Preferred Language</label>
+        <select id="signup-language" name="preferredLanguage" required>
+          <option value="" disabled selected>Select language</option>
+          <option value="en">English</option>
+          <option value="ta">Tamil</option>
+          <option value="hi">Hindi</option>
+          <option value="ml">Malayalam</option>
+          <option value="fr">French</option>
+          <option value="zh">Chinese</option>
+        </select>
+      </div>
+      <!-- Add an element to display messages -->
+      <p id="signupMessage" style="color: red;"></p>
+      <button type="submit" class="btn">Signup</button>
+    </form>
+  </div>
 </body>
 </html>

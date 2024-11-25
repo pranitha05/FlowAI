@@ -3,9 +3,9 @@ import CONFIG from './config.js';
 
 document.addEventListener('DOMContentLoaded', () => {
     // Tab functionality
-    const tabButtons = document.querySelectorAll('.tab-button');
+    const tabButtons = document.querySelectorAll('.tab-btn');
     const formSections = document.querySelectorAll('.form-section');
-    const backendUrl = CONFIG.BACKEND_BASE_URL;
+    const backendUrl = CONFIG.BACKEND_BASE_URL || 'http://localhost:8000';
 
     tabButtons.forEach(button => {
         button.addEventListener('click', () => {
@@ -15,10 +15,10 @@ document.addEventListener('DOMContentLoaded', () => {
             button.classList.add('active');
 
             // Hide all form sections
-            formSections.forEach(section => section.classList.remove('active'));
+            formSections.forEach(section => section.classList.add('hidden'));
             // Show the target form section
-            const target = button.getAttribute('data-target');
-            document.getElementById(target).classList.add('active');
+            const target = button.getAttribute('data-tab');
+            document.getElementById(target).classList.remove('hidden');
         });
     });
 
@@ -57,8 +57,8 @@ document.addEventListener('DOMContentLoaded', () => {
                 // Save the token securely (consider using secure storage in production)
                 localStorage.setItem('access_token', data.access_token);
                 localStorage.setItem('userId', data.userId);
-                // Redirect to main application
-                window.location.href = '/landing.html';
+                // Redirect to dashboard
+                window.location.href = '/dashboard';
             } else {
                 displayMessage(loginMessage, data.msg || data.error || 'Login failed.');
             }
@@ -90,8 +90,6 @@ document.addEventListener('DOMContentLoaded', () => {
             return;
         }
 
-        // Additional client-side validation can be added here
-
         try {
             const response = await fetch(`${backendUrl}/user/signup`, {
                 method: 'POST',
@@ -111,11 +109,11 @@ document.addEventListener('DOMContentLoaded', () => {
             const data = await response.json();
 
             if (response.ok) {
-                // Optionally, auto-login the user after signup
+                // Save the token securely (consider using secure storage in production)
                 localStorage.setItem('access_token', data.access_token);
                 localStorage.setItem('userId', data.userId);
-                // Redirect to main application
-                window.location.href = '/landing.html';
+                // Redirect to dashboard
+                window.location.href = '/dashboard';
             } else {
                 displayMessage(signupMessage, data.error || 'Signup failed.');
             }
@@ -124,7 +122,6 @@ document.addEventListener('DOMContentLoaded', () => {
             console.error('Signup Error:', error);
         }
     });
-
     // Forgot Password Form Submission
     const forgotPasswordForm = document.getElementById('forgotPasswordForm');
     const forgotPasswordMessage = document.getElementById('forgotPasswordMessage');
@@ -160,9 +157,15 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
-    // Google Login Button
-    const googleLoginBtn = document.getElementById('googleLoginBtn');
-    googleLoginBtn.addEventListener('click', () => {
-        window.location.href = `${backendUrl}/auth/google`;
-    });
+    // Show Reset Password Section
+    window.showResetPassword = function() {
+        document.getElementById('login').classList.add('hidden');
+        document.getElementById('reset-password').classList.remove('hidden');
+    }
+
+    // Show Login Section
+    window.showLogin = function() {
+        document.getElementById('reset-password').classList.add('hidden');
+        document.getElementById('login').classList.remove('hidden');
+    }
 });
