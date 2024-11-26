@@ -57,6 +57,8 @@ document.addEventListener('DOMContentLoaded', () => {
                 // Save the token securely (consider using secure storage in production)
                 localStorage.setItem('access_token', data.access_token);
                 localStorage.setItem('userId', data.userId);
+                localStorage.setItem('preferredLanguage', data.preferredLanguage || 'en');
+
                 // Redirect to dashboard
                 window.location.href = '/dashboard';
             } else {
@@ -112,6 +114,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 // Save the token securely (consider using secure storage in production)
                 localStorage.setItem('access_token', data.access_token);
                 localStorage.setItem('userId', data.userId);
+                localStorage.setItem('preferredLanguage', data.preferredLanguage || 'en');
                 // Redirect to dashboard
                 window.location.href = '/dashboard';
             } else {
@@ -168,4 +171,6 @@ document.addEventListener('DOMContentLoaded', () => {
         document.getElementById('reset-password').classList.add('hidden');
         document.getElementById('login').classList.remove('hidden');
     }
+
+    
 });
