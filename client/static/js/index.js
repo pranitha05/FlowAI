@@ -93,5 +93,7 @@ document.addEventListener('DOMContentLoaded', () => {
   // Logout Function (if not already defined in individual pages)
   function logout() {
     // Add logout logic here
+    localStorage.removeItem('access_token', data.access_token);
+    localStorage.removeItem('userId', data.userId);
     alert('Logout functionality to be implemented.');
   }

@@ -18,23 +18,26 @@
 
   <header>
     <div class="logo" onclick="window.location.href='landing.html'">
-      <img src="../static/images/image.png" alt="FlowAI Logo"> FlowAI
+      <img src="../static/images/image.png" alt="FlowAI Logo" data-translate>
+      FlowAI
     </div>
+    <div style="display: flex; align-items: center; gap: 20px;">
+      <div class="theme-toggle">
+        <label class="switch">
+          <input type="checkbox" onclick="toggleTheme()">
+          <span class="slider"></span>
+        </label>
+      </div>
     <nav>
       <a href="#">☰</a>
       <div class="menu">
-        <a href="AI_agent.html">AI Task Flow</a>
-        <a href="games.html">Games</a>
-        <a href="user_profile.html">My Profile</a>
-        <a href="#" onclick="logout()">Logout</a>
+        <a href="AI_agent.html" data-translate>AI Task Flow</a>
+        <a href="games.html" data-translate>Games</a>
+        <a href="pomodoro_timer.html" data-translate>Pomodoro</a>
+        <a href="user_profile.html" data-translate>User Profile</a>
+        <a href="#" onclick="logout()" data-translate>Logout</a>
       </div>
     </nav>
-    <div class="theme-toggle">
-      <label class="switch">
-        <input type="checkbox" id="theme-switch">
-        <span class="slider"></span>
-      </label>
-    </div>
   </header>
 
   <main>
