@@ -41,23 +41,69 @@
       </div>
     </nav>
   </header>
+
   <main>
     <h1>My Profile</h1>
     <div class="central-div">
+      <!-- Profile Picture Section -->
       <div class="inner-left-div">
-        <img class="default-user-icon" src="../static/images/default_user_icon.png">
+        <img id="profile-picture" class="default-user-icon" src="../static/images/default_user_icon.png">
+        <input type="file" id="profile-pic-upload" accept="image/*" style="display:none;">
+        <button id="change-profile-pic-btn" class="tab-btn">Change Picture</button>
       </div>
-      <div class="inner-right-div">
-        <p>Name: Jane Smith</p>
-        <p>username: janesmith</p>
-        <p>email: janesmith@gmail.com</p>
-        <p>password: ********</p>
-        <p>gender: female</p>
-        <p>Place of Residence: 1234 Main St, Nowhere, IL USA 54321</p>
-        <p>Field of study: Biology</p>
-        <p>Language: English</p>
+
+      <!-- Profile Information Section -->
+      <div class="inner-right-div" id="profile-info">
+        <div class="profile-field">
+          <label>Name:</label>
+          <span id="display-name"></span>
+          <input type="text" id="edit-name" class="edit-input" style="display:none;">
+        </div>
+        <div class="profile-field">
+          <label>Username:</label>
+          <span id="display-username"></span>
+        </div>
+        <div class="profile-field">
+          <label>Email:</label>
+          <span id="display-email"></span>
+        </div>
+        <div class="profile-field">
+          <label>Gender:</label>
+          <span id="display-gender"></span>
+          <select id="edit-gender" class="edit-input" style="display:none;">
+            <option value="male">Male</option>
+            <option value="female">Female</option>
+            <option value="other">Non-Binary</option>
+            <option value="prefer-not-to-say">Prefer Not to Say</option>
+          </select>
+        </div>
+        <div class="profile-field">
+          <label>Place of Residence:</label>
+          <span id="display-residence"></span>
+          <input type="text" id="edit-residence" class="edit-input" style="display:none;">
+        </div>
+        <div class="profile-field">
+          <label>Field of Study:</label>
+          <span id="display-study"></span>
+          <input type="text" id="edit-study" class="edit-input" style="display:none;">
+        </div>
+        <div class="profile-field">
+          <label>Language:</label>
+          <span id="display-language"></span>
+          <select id="edit-language" class="edit-input" style="display:none;">
+            <option value="en">English</option>
+            <option value="ta">Tamil</option>
+            <option value="hi">Hindi</option>
+            <option value="ml">Malayalam</option>
+            <option value="fr">French</option>
+            <option value="zh">Chinese</option>
+          </select>
+        </div>
+
         <div class="btn-div">
-          <button id="edit-profile-btn" class="tab-btn">edit</button>
+          <button id="edit-profile-btn" class="tab-btn">Edit Profile</button>
+          <button id="save-profile-btn" class="tab-btn" style="display:none;">Save Changes</button>
+          <button id="cancel-edit-btn" class="tab-btn" style="display:none;">Cancel</button>
         </div>
       </div>
     </div>

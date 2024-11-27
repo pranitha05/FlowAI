@@ -19,7 +19,7 @@
 <body>
   <div id="particles-js"></div>
   <header>
-    <div class="logo" onclick="navigateToIndex()">
+    <div class="logo" onclick="window.location.href='index.html'">
       <img src="../static/images/image.png" alt="FlowAI Logo"> FlowAI
     </div>
     <!-- Add Theme Toggle Switch -->
@@ -75,61 +75,81 @@
     </form>
   </div>
 
+  
   <!-- Signup Form -->
-  <div class="form-section hidden" id="signup">
-    <form id="signupForm">
-      <h2>Join FlowAI</h2>
-      <p>Create an account and transform productivity with AI.</p>
-      <div class="input-group">
-        <label for="signup-username">Username</label>
-        <input type="text" id="signup-username" name="username" required>
+<div class="form-section hidden" id="signup">
+  <form id="signupForm">
+    <h2>Join FlowAI</h2>
+    <p>Create an account and transform productivity with AI.</p>
+    
+    <div class="input-group">
+      <label for="signup-profile-pic">Profile Picture</label>
+      <input type="file" id="signup-profile-pic" name="profilePic" accept="image/*">
+      <small>Optional: Upload a profile picture (max 5MB)</small>
+    </div>
+    
+    <div class="input-group">
+      <label for="signup-username">Username</label>
+      <input type="text" id="signup-username" name="username" required>
+    </div>
+    <div class="input-group">
+      <label for="signup-email">Email</label>
+      <input type="email" id="signup-email" name="email" required>
+    </div>
+    <div class="input-group">
+      <label for="signup-password">Password</label>
+      <input type="password" id="signup-password" name="password" required>
+    </div>
+    <div class="input-group">
+      <label for="signup-name">Name</label>
+      <input type="text" id="signup-name" name="name" required>
+    </div>
+    <div class="input-group">
+      <label for="signup-age">Age</label>
+      <input type="number" id="signup-age" name="age" min="18" required>
+    </div>
+    <div class="input-group">
+      <label for="signup-gender">Gender</label>
+      <select id="signup-gender" name="gender" required>
+        <option value="" disabled selected>Select your gender</option>
+        <option value="male">Male</option>
+        <option value="female">Female</option>
+        <option value="other">Non-Binary</option>
+        <option value="prefer-not-to-say">Prefer Not to Say</option>
+      </select>
+    </div>
+    <div class="input-group">
+      <label for="signup-study">Field of Study</label>
+      <input type="text" id="signup-study" name="fieldOfStudy" required>
+    </div>
+    <div class="input-group">
+      <label for="signup-language">Preferred Language</label>
+      <select id="signup-language" name="preferredLanguage" required>
+        <option value="" disabled selected>Select language</option>
+        <option value="en">English</option>
+        <option value="ta">Tamil</option>
+        <option value="hi">Hindi</option>
+        <option value="ml">Malayalam</option>
+        <option value="fr">French</option>
+        <option value="zh">Chinese</option>
+      </select>
+    </div>
+    
+    <!-- Signup Methods -->
+    <div class="signup-methods">
+      <button type="submit" class="btn btn-primary">Create Account</button>
+      <div class="or-divider">
+        <span>or</span>
       </div>
-      <div class="input-group">
-        <label for="signup-email">Email</label>
-        <input type="email" id="signup-email" name="email" required>
-      </div>
-      <div class="input-group">
-        <label for="signup-password">Password</label>
-        <input type="password" id="signup-password" name="password" required>
-      </div>
-      <div class="input-group">
-        <label for="signup-name">Name</label>
-        <input type="text" id="signup-name" name="name" required>
-      </div>
-      <div class="input-group">
-        <label for="signup-age">Age</label>
-        <input type="number" id="signup-age" name="age" min="18" required>
-      </div>
-      <div class="input-group">
-        <label for="signup-gender">Gender</label>
-        <select id="signup-gender" name="gender" required>
-          <option value="" disabled selected>Select your gender</option>
-          <option value="male">Male</option>
-          <option value="female">Female</option>
-          <option value="non-binary">Non-Binary</option>
-          <option value="prefer-not-to-say">Prefer Not to Say</option>
-        </select>
-      </div>
-      <div class="input-group">
-        <label for="signup-study">Field of Study</label>
-        <input type="text" id="signup-study" name="fieldOfStudy" required>
-      </div>
-      <div class="input-group">
-        <label for="signup-language">Preferred Language</label>
-        <select id="signup-language" name="preferredLanguage" required>
-          <option value="" disabled selected>Select language</option>
-          <option value="en">English</option>
-          <option value="ta">Tamil</option>
-          <option value="hi">Hindi</option>
-          <option value="ml">Malayalam</option>
-          <option value="fr">French</option>
-          <option value="zh">Chinese</option>
-        </select>
-      </div>
-      <!-- Add an element to display messages -->
-      <p id="signupMessage" style="color: red;"></p>
-      <button type="submit" class="btn">Signup</button>
-    </form>
-  </div>
+      <button type="button" id="google-signup" class="btn btn-google">
+        <img src="path/to/google-icon.svg" alt="Google Logo">
+        Sign up with Google
+      </button>
+    </div>
+    
+    <!-- Add an element to display messages -->
+    <p id="signupMessage" style="color: red;"></p>
+  </form>
+</div>
 </body>
 </html>
