@@ -17,13 +17,25 @@ from secrets import token_urlsafe
 from flask_mail import Message
 from utils.reset_tokens import generate_reset_token, verify_reset_token
 from utils.translate_decorator import translate_response
-
+from werkzeug.utils import secure_filename
 """Step 2: Configurations"""
 load_dotenv()
 
 
 """Step 3: Creating a blueprint for the auth routes"""
 auth_routes = Blueprint("auth", __name__)
+
+
+# Define the upload folder and allowed extensions
+UPLOAD_FOLDER = os.path.join(os.getcwd(), 'static', 'profile_pics')
+ALLOWED_EXTENSIONS = {'png', 'jpg', 'jpeg', 'gif'}
+
+# Ensure the upload folder exists
+os.makedirs(UPLOAD_FOLDER, exist_ok=True)
+
+def allowed_file(filename):
+    return '.' in filename and \
+           filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
 
 
 """Step 4: Defining routes"""
@@ -34,8 +46,24 @@ auth_routes = Blueprint("auth", __name__)
 def signup():
     try:
         logging.info("Starting user registration process")
-        user_data = request.get_json()
+        user_data = request.form.to_dict()
         logging.info(f"Received user data: {user_data}")
+
+        # Handle profile picture upload
+        if 'profile_picture' in request.files:
+            file = request.files['profile_picture']
+            if file and allowed_file(file.filename):
+                filename = secure_filename(file.filename)
+                # Generate a unique filename
+                unique_filename = f"{user_data['username']}_{filename}"
+                file_path = os.path.join(UPLOAD_FOLDER, unique_filename)
+                file.save(file_path)
+                # Generate the URL link to the profile picture
+                user_data['profile_picture'] = f"/static/profile_pics/{unique_filename}"
+            else:
+                return jsonify({"error": "Invalid image format"}), 400
+        else:
+            user_data['profile_picture'] = None  # or set a default image URL
 
         # Ensure 'preferredLanguage' is provided, else set a default (e.g., 'en')
         if 'preferredLanguage' not in user_data or not user_data['preferredLanguage']:
@@ -61,7 +89,13 @@ def signup():
             user_id = result.inserted_id
             access_token = create_access_token(identity=str(user_id), expires_delta=timedelta(hours=72))
 
-            return jsonify({"message": "User registered successfully", "access_token": access_token, "userId": str(user_id), "preferredLanguage": user.preferredLanguage or 'en'}), 201
+            return jsonify({
+                "message": "User registered successfully",
+                "access_token": access_token,
+                "userId": str(user_id),
+                "preferredLanguage": user.preferredLanguage or 'en',
+                "profile_picture": user.profile_picture
+            }), 201
         else:
             logging.error("Failed to save user")
             return jsonify({"error": "Failed to register user"}), 500

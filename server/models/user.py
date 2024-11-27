@@ -19,7 +19,7 @@ class User(BaseModel):
     google_id: str = None
     fieldOfStudy: str = None
     preferredLanguage: str = Field(None, pattern='^[a-z]{2}$')  
-    
+    profile_picture: Optional[str] = None
 
     """ Step 3: Define class methods """
     # Define a class method to validate the password field
