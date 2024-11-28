@@ -89,3 +89,66 @@ class User(BaseModel):
             user_data['id'] = str(user_data['_id'])
             return cls(**user_data)
         return None
+    
+    @classmethod
+def update_profile(cls, username, update_data):
+    """
+    Update user profile information
+    
+    :param username: Username of the user to update
+    :param update_data: Dictionary containing fields to update
+    :return: Updated user object or None if update fails
+    """
+    db_client = MongoDBClient.get_client()
+    db = db_client[MongoDBClient.get_db_name()]
+    
+    # Remove None values to prevent overwriting with None
+    update_data = {k: v for k, v in update_data.items() if v is not None}
+    
+    try:
+        # Validate the update data before updating
+        result = db.users.update_one(
+            {"username": username}, 
+            {"$set": update_data}
+        )
+        
+        if result.modified_count == 1:
+            # Fetch and return the updated user
+            updated_user_data = db.users.find_one({"username": username})
+            updated_user_data['id'] = str(updated_user_data['_id'])
+            return cls(**updated_user_data)
+        
+    except Exception as e:
+        print(f"Update error: {e}")
+    
+    return None
+
+# Add profile picture upload method
+@classmethod
+def update_profile_picture(cls, username, profile_pic_path):
+    """
+    Update user's profile picture
+    
+    :param username: Username of the user
+    :param profile_pic_path: Path to the uploaded profile picture
+    :return: Updated user object or None if update fails
+    """
+    db_client = MongoDBClient.get_client()
+    db = db_client[MongoDBClient.get_db_name()]
+    
+    try:
+        result = db.users.update_one(
+            {"username": username}, 
+            {"$set": {"profile_pic": profile_pic_path}}
+        )
+        
+        if result.modified_count == 1:
+            # Fetch and return the updated user
+            updated_user_data = db.users.find_one({"username": username})
+            updated_user_data['id'] = str(updated_user_data['_id'])
+            return cls(**updated_user_data)
+        
+    except Exception as e:
+        print(f"Profile picture update error: {e}")
+    
+    return None
