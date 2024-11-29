@@ -27,6 +27,17 @@ def ai_agent():
 def user_profile():
     return render_template('user_profile.html')
 
+@app.route('/pomodoro_timer')
+def pomodoro_timer():
+    return render_template('pomodoro_timer.html')
+
+@app.route('/games')
+def games():
+    return render_template('games.html')
+
+@app.route('user_profile')
+def user_profile():
+    return render_template('user_profile.html')
 
 """ Step 4: Start the server """
 if __name__ == '__main__':
