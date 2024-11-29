@@ -1,19 +1,54 @@
+/* Global Reset */
 * {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
 }
 
+/* Dark Theme Color Scheme */
+[data-theme="dark"] {
+  --background-color: #282c34; /* Dark Background */
+  --text-color: #fff; /* White Text */
+  --primary-color: #1abc9c; /* Light Blue */
+  --button-background: #2c3e50; /* White Button */
+  --button-border: #1abc9c; /* Light Blue Border */
+  --button-hover-background: #1abc9c; /* Light Blue Hover */
+  --button-hover-color: #fff; /* White Button Text on Hover */
+  --correct-button-background: #28a745; /* Green for Correct */
+  --incorrect-button-background: #dc3545; /* Red for Incorrect */
+  --replay-button-background: #1abc9c; /* Replay Button Color */
+  --overlay-background: rgba(0, 0, 0, 0.8); /* Overlay Background */
+  --word-display-color: #1abc9c; /* Word Display Color */
+}
+
+/* Light Theme Color Scheme */
+[data-theme="light"] {
+  --background-color: #f9f9f9; /* Light Background */
+  --text-color: #000; /* Black Text */
+  --primary-color: #61dafb; /* Light Blue */
+  --button-background: #f0f0f0; /* Light Button */
+  --button-border: #61dafb; /* Light Blue Border */
+  --button-hover-background: #61dafb; /* Light Blue Hover */
+  --button-hover-color: #fff; /* White Button Text on Hover */
+  --correct-button-background: #28a745; /* Green for Correct */
+  --incorrect-button-background: #dc3545; /* Red for Incorrect */
+  --replay-button-background: #61dafb; /* Replay Button Color */
+  --overlay-background: rgba(0, 0, 0, 0.5); /* Overlay Background */
+  --word-display-color: #61dafb; /* Word Display Color */
+}
+
+/* Body and General Styles */
 body {
   font-family: Arial, sans-serif;
   display: flex;
   justify-content: center;
   align-items: center;
   height: 100vh;
-  background-color: #282c34;
-  color: #fff;
+  background-color: var(--background-color);
+  color: var(--text-color);
 }
 
+/* Container Styles */
 .container {
   text-align: center;
   width: 100%;
@@ -25,11 +60,13 @@ body {
   align-items: center;
 }
 
+/* Header */
 h1 {
-  color: #61dafb;
+  color: var(--primary-color);
   margin-bottom: 20px;
 }
 
+/* Game Container */
 .game-container {
   display: flex;
   justify-content: flex-start;
@@ -40,6 +77,7 @@ h1 {
   margin-right: 20px;
 }
 
+/* Word and Button Display */
 .word-and-buttons {
   display: flex;
   flex-direction: column;
@@ -49,23 +87,26 @@ h1 {
   width: 100%;
 }
 
+/* Word Display */
 .word-display {
   font-size: 30px;
   letter-spacing: 2px;
   margin: 20px 0;
   margin-right: 240px;
-  color: #61dafb;
+  color: var(--word-display-color);
 }
 
+/* Hangman Image */
 .hangman-image {
   width: 200px;
   height: auto;
   margin-right: 2px;
 }
 
+/* Letter Buttons */
 .letter-buttons {
   display: grid;
-  grid-template-columns: repeat(13, 30px);
+  grid-template-columns: repeat(13, 50px);
   gap: 10px;
   margin: 20px 0;
   margin-right: 240px;
@@ -76,27 +117,28 @@ h1 {
   padding: 10px;
   font-size: 16px;
   cursor: pointer;
-  background-color: #fff;
-  border: 1px solid #61dafb;
+  background-color: var(--button-background);
+  border: 1px solid var(--button-border);
   border-radius: 4px;
   transition: background-color 0.3s, color 0.3s;
 }
 
 .letter-buttons button:hover {
-  background-color: #61dafb;
-  color: #fff;
+  background-color: var(--button-hover-background);
+  color: var(--button-hover-color);
 }
 
 .letter-buttons button.correct {
-  background-color: #28a745;
+  background-color: var(--correct-button-background);
   color: #fff;
 }
 
 .letter-buttons button.incorrect {
-  background-color: #dc3545;
+  background-color: var(--incorrect-button-background);
   color: #fff;
 }
 
+/* Replay Button Container */
 .replay-container {
   display: flex;
   justify-content: center;
@@ -104,21 +146,19 @@ h1 {
   margin-top: 20px;
 }
 
+/* Replay Button */
 .replay-btn {
   padding: 10px 20px;
   font-size: 16px;
   cursor: pointer;
-  background-color: #61dafb;
+  background-color: var(--replay-button-background);
   border: none;
   border-radius: 4px;
   color: #282c34;
   transition: background-color 0.3s;
 }
 
-.replay-btn:hover {
-  background-color: #45a1d4;
-}
-
+/* Result Overlay */
 .result-overlay {
   display: none;
   position: fixed;
@@ -126,12 +166,12 @@ h1 {
   left: 0;
   width: 100%;
   height: 100%;
-  background: rgba(0, 0, 0, 0.8);
+  background: var(--overlay-background);
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  color: #fff;
+  color: var(--text-color);
 }
 
 .result-overlay p {
@@ -143,17 +183,14 @@ h1 {
   padding: 10px 20px;
   font-size: 16px;
   cursor: pointer;
-  background-color: #61dafb;
-  color: #282c34;
+  background-color: var(--replay-button-background);
+  color: var(--text-color);
   border: none;
   border-radius: 4px;
   transition: background-color 0.3s;
 }
 
-.result-overlay button:hover {
-  background-color: #45a1d4;
-}
-
+/* Responsive Design */
 @media (max-width: 768px) {
   .game-container {
     flex-direction: column;
