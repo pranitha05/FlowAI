@@ -34,81 +34,82 @@
     <nav>
       <a href="#">☰</a>
       <div class="menu">
-        <a href="AI_agent.html">AI Task Flow</a>
-        <a href="games.html">Games</a>
-        <a href="user_profile.html">User Profile</a>
-        <a href="#" onclick="logout()">Logout</a>
+        <a href="AI_agent.html" data-translate>AI Task Flow</a>
+        <a href="games.html" data-translate>Games</a>
+        <a href="pomodoro_timer.html" data-translate>Pomodoro Timer</a>
+        <a href="user_profile.html" data-translate>User Profile</a>
+        <a href="#" onclick="logout()" data-translate>Logout</a>
       </div>
     </nav>
   </header>
 
   <main>
-    <h1>My Profile</h1>
+    <h1 data-translate>My Profile</h1>
     <div class="central-div">
       <!-- Profile Picture Section -->
       <div class="inner-left-div">
         <img id="profile-picture" class="default-user-icon" src="../static/images/default_user_icon.png">
         <input type="file" id="profile-pic-upload" accept="image/*" style="display:none;">
-        <button id="change-profile-pic-btn" class="tab-btn">Change Picture</button>
+        <button id="change-profile-pic-btn" class="tab-btn" data-translate>Change Picture</button>
       </div>
 
       <!-- Profile Information Section -->
       <div class="inner-right-div" id="profile-info">
         <div class="profile-field">
-          <label>Name:</label>
+          <label data-translate>Name:</label>
           <span id="display-name"></span>
           <input type="text" id="edit-name" class="edit-input" style="display:none;">
         </div>
         <div class="profile-field">
-          <label>Username:</label>
+          <label data-translate>Username:</label>
           <span id="display-username"></span>
         </div>
         <div class="profile-field">
-          <label>Email:</label>
+          <label data-translate>Email:</label>
           <span id="display-email"></span>
         </div>
         <div class="profile-field">
-          <label>Gender:</label>
+          <label data-translate>Gender:</label>
           <span id="display-gender"></span>
           <select id="edit-gender" class="edit-input" style="display:none;">
-            <option value="male">Male</option>
-            <option value="female">Female</option>
-            <option value="other">Non-Binary</option>
-            <option value="prefer-not-to-say">Prefer Not to Say</option>
+            <option value="male" data-translate>Male</option>
+            <option value="female" data-translate>Female</option>
+            <option value="other" data-translate>Non-Binary</option>
+            <option value="prefer-not-to-say" data-translate>Prefer Not to Say</option>
           </select>
         </div>
         <div class="profile-field">
-          <label>Place of Residence:</label>
+          <label data-translate>Place of Residence:</label>
           <span id="display-residence"></span>
           <input type="text" id="edit-residence" class="edit-input" style="display:none;">
         </div>
         <div class="profile-field">
-          <label>Field of Study:</label>
+          <label data-translate>Field of Study:</label>
           <span id="display-study"></span>
           <input type="text" id="edit-study" class="edit-input" style="display:none;">
         </div>
         <div class="profile-field">
-          <label>Language:</label>
+          <label data-translate>Language:</label>
           <span id="display-language"></span>
           <select id="edit-language" class="edit-input" style="display:none;">
-            <option value="en">English</option>
-            <option value="ta">Tamil</option>
-            <option value="hi">Hindi</option>
-            <option value="ml">Malayalam</option>
-            <option value="fr">French</option>
-            <option value="zh">Chinese</option>
+            <option value="en" data-translate>English</option>
+            <option value="ta" data-translate>Tamil</option>
+            <option value="hi" data-translate>Hindi</option>
+            <option value="ml" data-translate>Malayalam</option>
+            <option value="fr" data-translate>French</option>
+            <option value="zh" data-translate>Chinese</option>
           </select>
         </div>
 
         <div class="btn-div">
-          <button id="edit-profile-btn" class="tab-btn">Edit Profile</button>
-          <button id="save-profile-btn" class="tab-btn" style="display:none;">Save Changes</button>
-          <button id="cancel-edit-btn" class="tab-btn" style="display:none;">Cancel</button>
+          <button id="edit-profile-btn" class="tab-btn" data-translate>Edit Profile</button>
+          <button id="save-profile-btn" class="tab-btn" style="display:none;" data-translate>Save Changes</button>
+          <button id="cancel-edit-btn" class="tab-btn" style="display:none;" data-translate>Cancel</button>
         </div>
       </div>
     </div>
   </main>
-  <footer>
+  <footer data-translate>
     © 2024 FlowAI. All rights reserved.
   </footer>
 </body>

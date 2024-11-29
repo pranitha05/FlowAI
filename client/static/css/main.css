@@ -191,6 +191,11 @@ nav:hover .menu {
   border-bottom: 1px solid #ddd;
 }
 
+nav:hover .menu,
+nav .menu:hover {
+  display: block;
+}
+
 .menu a:last-child {
   border-bottom: none;
 }
