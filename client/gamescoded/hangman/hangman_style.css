@@ -1,43 +1,41 @@
-/* Global Reset */
 * {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
 }
 
-/* Dark Theme Color Scheme */
+
 [data-theme="dark"] {
-  --background-color: #282c34; /* Dark Background */
-  --text-color: #fff; /* White Text */
-  --primary-color: #1abc9c; /* Light Blue */
-  --button-background: #2c3e50; /* White Button */
-  --button-border: #1abc9c; /* Light Blue Border */
-  --button-hover-background: #1abc9c; /* Light Blue Hover */
-  --button-hover-color: #fff; /* White Button Text on Hover */
-  --correct-button-background: #28a745; /* Green for Correct */
-  --incorrect-button-background: #dc3545; /* Red for Incorrect */
-  --replay-button-background: #1abc9c; /* Replay Button Color */
-  --overlay-background: rgba(0, 0, 0, 0.8); /* Overlay Background */
-  --word-display-color: #1abc9c; /* Word Display Color */
+  --background-color: #282c34; 
+  --text-color: #fff; 
+  --primary-color: #1abc9c; 
+  --button-background: #2c3e50; 
+  --button-border: #1abc9c; 
+  --button-hover-background: #1abc9c; 
+  --button-hover-color: #fff; 
+  --correct-button-background: #28a745; 
+  --incorrect-button-background: #dc3545;
+  --replay-button-background: #1abc9c; 
+  --overlay-background: rgba(0, 0, 0, 0.8);
+  --word-display-color: #1abc9c;
 }
 
-/* Light Theme Color Scheme */
 [data-theme="light"] {
-  --background-color: #f9f9f9; /* Light Background */
-  --text-color: #000; /* Black Text */
-  --primary-color: #61dafb; /* Light Blue */
-  --button-background: #f0f0f0; /* Light Button */
-  --button-border: #61dafb; /* Light Blue Border */
-  --button-hover-background: #61dafb; /* Light Blue Hover */
-  --button-hover-color: #fff; /* White Button Text on Hover */
-  --correct-button-background: #28a745; /* Green for Correct */
-  --incorrect-button-background: #dc3545; /* Red for Incorrect */
-  --replay-button-background: #61dafb; /* Replay Button Color */
-  --overlay-background: rgba(0, 0, 0, 0.5); /* Overlay Background */
-  --word-display-color: #61dafb; /* Word Display Color */
+  --background-color: #f9f9f9;
+  --text-color: #000;
+  --primary-color: #61dafb; 
+  --button-background: #f0f0f0; 
+  --button-border: #61dafb; 
+  --button-hover-background: #61dafb; 
+  --button-hover-color: #fff; 
+  --correct-button-background: #28a745; 
+  --incorrect-button-background: #dc3545; 
+  --replay-button-background: #61dafb; 
+  --overlay-background: rgba(0, 0, 0, 0.5); 
+  --word-display-color: #61dafb; 
 }
 
-/* Body and General Styles */
+
 body {
   font-family: Arial, sans-serif;
   display: flex;
@@ -48,7 +46,7 @@ body {
   color: var(--text-color);
 }
 
-/* Container Styles */
+
 .container {
   text-align: center;
   width: 100%;
@@ -60,13 +58,13 @@ body {
   align-items: center;
 }
 
-/* Header */
+
 h1 {
   color: var(--primary-color);
   margin-bottom: 20px;
 }
 
-/* Game Container */
+
 .game-container {
   display: flex;
   justify-content: flex-start;
@@ -77,7 +75,7 @@ h1 {
   margin-right: 20px;
 }
 
-/* Word and Button Display */
+
 .word-and-buttons {
   display: flex;
   flex-direction: column;
@@ -87,7 +85,7 @@ h1 {
   width: 100%;
 }
 
-/* Word Display */
+
 .word-display {
   font-size: 30px;
   letter-spacing: 2px;
@@ -96,14 +94,14 @@ h1 {
   color: var(--word-display-color);
 }
 
-/* Hangman Image */
+
 .hangman-image {
   width: 200px;
   height: auto;
   margin-right: 2px;
 }
 
-/* Letter Buttons */
+
 .letter-buttons {
   display: grid;
   grid-template-columns: repeat(13, 50px);
@@ -138,7 +136,6 @@ h1 {
   color: #fff;
 }
 
-/* Replay Button Container */
 .replay-container {
   display: flex;
   justify-content: center;
@@ -146,7 +143,6 @@ h1 {
   margin-top: 20px;
 }
 
-/* Replay Button */
 .replay-btn {
   padding: 10px 20px;
   font-size: 16px;
@@ -158,7 +154,6 @@ h1 {
   transition: background-color 0.3s;
 }
 
-/* Result Overlay */
 .result-overlay {
   display: none;
   position: fixed;
@@ -190,7 +185,6 @@ h1 {
   transition: background-color 0.3s;
 }
 
-/* Responsive Design */
 @media (max-width: 768px) {
   .game-container {
     flex-direction: column;
