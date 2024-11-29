@@ -21,7 +21,11 @@ def dashboard():
 
 @app.route('/ai_agent')
 def ai_agent():
-    return render_template('ai_agent.html')
+    return render_template('AI_agent.html')
+
+@app.route('/profile')
+def user_profile():
+    return render_template('user_profile.html')
 
 
 """ Step 4: Start the server """
