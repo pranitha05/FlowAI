@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Games - FlowAI</title>
+  <link rel="stylesheet" href="../static/css/main.css">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Architects+Daughter&family=Hanken+Grotesk:ital,wght@0,100..900;1,100..900&family=Livvic:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,900&family=Quicksand:wght@300..700&display=swap" rel="stylesheet">
+  <!-- Libraries -->
+  <script src="https://cdn.jsdelivr.net/npm/particles.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r121/three.min.js"></script>
+  <script src="../static/js/index.js" defer></script>
+  <script type="module" src="../static/js/translator.js" defer></script>
+</head>
+<body>
+
+<!-- Particles.js Background -->
+<div id="particles-js"></div>
+
+  <header>
+    <div class="logo" onclick="window.location.href='landing.html'">
+      <img src="../static/images/image.png" alt="FlowAI Logo" data-translate>
+      FlowAI
+    </div>
+    <div style="display: flex; align-items: center; gap: 20px;">
+      <div class="theme-toggle">
+        <label class="switch">
+          <input type="checkbox" onclick="toggleTheme()">
+          <span class="slider"></span>
+        </label>
+      </div>
+    <nav>
+      <a href="#">☰</a>
+      <div class="menu">
+        <a href="AI_agent.html" data-translate>AI Task Flow</a>
+        <a href="games.html" data-translate>Games</a>
+        <a href="pomodoro_timer.html" data-translate>Pomodoro</a>
+        <a href="user_profile.html" data-translate>User Profile</a>
+        <a href="#" onclick="logout()" data-translate>Logout</a>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <h1 data-translate>Choose a Game to Play</h1>
+    <p data-translate>Select a game from the options below:</p>
+    <div class="features">
+      <div class="feature-card" style="cursor: pointer" onclick="window.location.href='tictactoe.html'">
+        <h3 data-translate>Tic-Tac-Toe</h3>
+        <p data-translate>Classic 3x3 grid game. Play against another player or the AI.</p>
+      </div>
+      <div class="feature-card" style="cursor: pointer" onclick="window.location.href='hangman.html'">
+        <h3 data-translate>Hangman</h3>
+        <p data-translate>Guess the word one letter at a time before the man is hanged!</p>
+      </div>
+      <div class="feature-card" style="cursor: pointer" onclick="window.location.href='connect4.html'">
+        <h3 data-translate>Connect 4</h3>
+        <p data-translate>Drop your discs and connect four in a row to win!</p>
+      </div>
+    </div>
+  </main>
+
+  <div>
+    <p>© 2024 FlowAI. All rights reserved.</p>
+  </div>
+
+</body>
+</html>

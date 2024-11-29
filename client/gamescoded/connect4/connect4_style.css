@@ -1,6 +1,43 @@
 * {
   box-sizing: border-box;
 }
+
+/* Dark Theme Color Scheme */
+[data-theme="dark"] {
+  --primary-color: #ffffff; /* White */
+  --accent-color: #1abc9c; /* Teal Accent */
+  --background-color: #121212; /* Dark Background */
+  --text-color: #ffffff;
+  --cell-background: #2c3e50;
+  --button-border: #1abc9c; /* Dark Green Background */
+  --cell-hover: #1abc9c; /* Lighter Green Hover */
+  --cell-text-color: #ecf0f1; /* Light Text for Tic-Tac-Toe Cells */
+  --active-button-color: #27ae60; /* Dark Green for Active Button */
+  --button-color: #1abc9c; /* Teal Color for Buttons */
+  --result-color: #27ae60; /* Yellow for Draw */
+}
+
+/* Light Theme Color Scheme */
+[data-theme="light"] {
+  --primary-color: #000000; /* Black */
+  --accent-color: #61dafb; /* Blue Accent */
+  --background-color: linear-gradient(
+    135deg,
+    rgba(222, 239, 255, 1) 0%,
+    rgba(152, 190, 222, 1) 100%
+  );
+  --text-color: #000000;
+  --secondary-text-color: #000000;
+  --cell-background: #f0f0f0; /* Light Background for Cells */
+  --cell-hover: #d1d8e0;
+  --button-border: #61dafb;
+  --cell-text-color: #000000; /* Dark Text for Tic-Tac-Toe Cells */
+  --active-button-color: #007bff; /* Darker Blue for Active Button */
+  --button-color: #61dafb; /* Light Blue for Buttons */
+  --result-color: #27ae60;
+}
+
+/* Global Body Styles */
 body {
   display: flex;
   justify-content: center;
@@ -8,30 +45,39 @@ body {
   height: 100vh;
   margin: 0;
   font-family: Arial, sans-serif;
-  background-color: #282c34;
+  background-color: var(--background-color);
+  color: var(--text-color);
 }
+
+/* Container Styles */
 .container {
   text-align: center;
 }
+
+/* Header Styles */
 h1 {
-  color: #61dafb;
+  color: var(--text-color);
 }
+
+/* Mode Selection Buttons */
 .mode-selection button {
   margin: 5px;
   padding: 10px 20px;
   font-size: 16px;
   cursor: pointer;
+  background-color: var(--button-color);
+  color: var(--primary-color);
+  border: 1px solid var(--button-color);
+  border-radius: 5px;
+  transition: background-color 0.3s ease;
 }
-.mode-btn {
-  margin: 5px;
-  padding: 10px 20px;
-  font-size: 16px;
-  cursor: pointer;
+
+.mode-selection button.active {
+  background-color: var(--active-button-color);
+  color: var(--primary-color);
 }
-.mode-btn.active {
-  background-color: #61dafb;
-  color: #282c34;
-}
+
+/* Game Board Styles */
 .game-board {
   display: grid;
   grid-template-columns: repeat(7, 50px);
@@ -39,24 +85,31 @@ h1 {
   gap: 5px;
   margin-top: 20px;
 }
+
+/* Cell Styles */
 .cell {
   width: 50px;
   height: 50px;
-  background-color: #61dafb;
+  background-color: var(--cell-background);
+  border: 1px solid var(--button-border);
   border-radius: 50%;
   cursor: pointer;
   transition: background-color 0.2s;
 }
+
 .cell.player1 {
   background-color: blue; /* Player 1 (Blue) */
 }
+
 .cell.player2 {
   background-color: red; /* Player 2 (Red) */
 }
+
+/* Status Text */
 .status {
   margin-top: 15px;
   font-size: 18px;
-  color: white;
+  color: var(--text-color);
 }
 
 /* Result Block Styles */
@@ -64,8 +117,8 @@ h1 {
   margin-top: 20px;
   padding: 10px 20px;
   font-size: 18px;
-  color: #fff;
-  background-color: #61dafb;
+  color: orange;
+  background-color: var(--button-color);
   border-radius: 5px;
   display: none; /* Initially hidden */
   max-width: 300px;
@@ -75,14 +128,6 @@ h1 {
 
 .result p {
   margin: 0;
-}
-
-.result-win {
-  color: green;
-}
-
-.result-draw {
-  color: orange;
 }
 
 /* Replay Button Styles */
@@ -95,12 +140,30 @@ h1 {
   padding: 10px 20px;
   font-size: 16px;
   cursor: pointer;
-  background-color: #61dafb;
-  color: #fff;
+  background-color: var(--button-color);
+  color: var(--primary-color);
   border: none;
 }
 
 .replay-btn:hover {
-  background-color: #282c34;
-  color: #61dafb;
+  background-color: var(--cell-hover);
+  color: var(--primary-color);
+}
+
+/* Responsive Design */
+@media (max-width: 600px) {
+  .game-board {
+    grid-template-columns: repeat(7, 40px);
+    grid-template-rows: repeat(6, 40px);
+  }
+
+  .cell {
+    width: 40px;
+    height: 40px;
+  }
+
+  .replay-btn {
+    font-size: 14px;
+    padding: 8px 16px;
+  }
 }
