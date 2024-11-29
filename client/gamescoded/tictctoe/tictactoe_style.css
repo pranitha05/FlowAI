@@ -1,21 +1,19 @@
-/* Dark Theme Color Scheme */
 [data-theme="dark"] {
-  --primary-color: #ffffff; /* White */
-  --accent-color: #1abc9c; /* Teal Accent */
-  --background-color: #121212; /* Dark Background */
+  --primary-color: #ffffff; 
+  --accent-color: #1abc9c; 
+  --background-color: #121212; 
   --text-color: #ffffff;
   --cell-background: #2c3e50;
-  --button-border: #1abc9c; /* Dark Green Background */
-  --cell-hover: #1abc9c; /* Lighter Green Hover */
-  --cell-text-color: #ecf0f1; /* Light Text for Tic-Tac-Toe Cells */
-  --active-button-color: #27ae60; /* Dark Green for Active Button */
+  --button-border: #1abc9c; 
+  --cell-hover: #1abc9c; 
+  --cell-text-color: #ecf0f1; 
+  --active-button-color: #27ae60; 
   --button-color: #1abc9c;
 }
 
-/* Light Theme Color Scheme */
 [data-theme="light"] {
-  --primary-color: #000000; /* Black */
-  --accent-color: #61dafb; /* Blue Accent */
+  --primary-color: #000000; 
+  --accent-color: #61dafb;
   --background-color: linear-gradient(
     135deg,
     rgba(222, 239, 255, 1) 0%,
@@ -23,16 +21,14 @@
   );
   --button-border: #61dafb;
   --text-color: #000000;
-  --cell-background: #f0f0f0; /* Light Background for Cells */
-  --cell-hover: #d1d8e0; /* Lighter Gray Hover */
-  --cell-text-color: #000000; /* Dark Text for Tic-Tac-Toe Cells */
-  --active-button-color: #007bff; /* Darker Blue for Active Button */
+  --cell-background: #f0f0f0;
+  --cell-hover: #d1d8e0; 
+  --cell-text-color: #000000; 
+  --active-button-color: #007bff; 
   --button-color: #61dafb;
 }
 
-/* General Styles for Tic-Tac-Toe (Dark and Light) */
 
-/* Game Board Cell Styles */
 .game-board {
   display: grid;
   grid-template-columns: repeat(3, 100px);
@@ -63,7 +59,7 @@
   cursor: default;
 }
 
-/* Button Styles */
+
 .mode-selection button {
   margin: 5px;
   padding: 10px 20px;
@@ -81,7 +77,7 @@
   color: var(--primary-color);
 }
 
-/* Replay Button */
+
 .replay-btn {
   margin-top: 20px;
   padding: 10px 20px;
@@ -111,7 +107,6 @@
   text-align: center;
 }
 
-/* Responsive Design */
 @media (max-width: 600px) {
   .game-board {
     grid-template-columns: repeat(3, 80px);
