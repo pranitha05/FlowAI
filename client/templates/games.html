@@ -16,6 +16,26 @@
   <script type="module" src="../static/js/translator.js" defer></script>
 </head>
 <body>
+<style>
+  .features {
+    display: flex;
+    gap: 20px;
+}
+
+.feature-card {
+    text-decoration: none;
+    color: inherit;
+    border: 1px solid #ddd;
+    padding: 20px;
+    border-radius: 8px;
+    transition: transform 0.3s ease;
+}
+
+.feature-card:hover {
+    transform: scale(1.05);
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
+</style>
 
 <!-- Particles.js Background -->
 <div id="particles-js"></div>
@@ -35,10 +55,10 @@
     <nav>
       <a href="#">☰</a>
       <div class="menu">
-        <a href="AI_agent.html" data-translate>AI Task Flow</a>
-        <a href="games.html" data-translate>Games</a>
-        <a href="pomodoro_timer.html" data-translate>Pomodoro</a>
-        <a href="user_profile.html" data-translate>User Profile</a>
+        <a href="/ai_agent" data-translate>AI Task Flow</a>
+        <a href="/games" data-translate>Games</a>
+        <a href="/pomodro_timer" data-translate>Pomodoro</a>
+        <a href="/user_profile" data-translate>User Profile</a>
         <a href="#" onclick="logout()" data-translate>Logout</a>
       </div>
     </nav>
@@ -48,18 +68,18 @@
     <h1 data-translate>Choose a Game to Play</h1>
     <p data-translate>Select a game from the options below:</p>
     <div class="features">
-      <div class="feature-card" style="cursor: pointer" onclick="window.location.href='tictactoe.html'">
+      <a href="/client/gamescoded/tictctoe/tictactoe_index.html" class="feature-card">
         <h3 data-translate>Tic-Tac-Toe</h3>
         <p data-translate>Classic 3x3 grid game. Play against another player or the AI.</p>
-      </div>
-      <div class="feature-card" style="cursor: pointer" onclick="window.location.href='hangman.html'">
+      </a>
+      <a href="/client/gamescoded/hangman/hangman_index.html" class="feature-card">
         <h3 data-translate>Hangman</h3>
         <p data-translate>Guess the word one letter at a time before the man is hanged!</p>
-      </div>
-      <div class="feature-card" style="cursor: pointer" onclick="window.location.href='connect4.html'">
+      </a>
+      <a href="/client/gamescoded/connect4/connect4_index.html" class="feature-card">
         <h3 data-translate>Connect 4</h3>
         <p data-translate>Drop your discs and connect four in a row to win!</p>
-      </div>
+      </a>
     </div>
   </main>
 
