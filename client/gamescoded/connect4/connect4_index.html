@@ -4,9 +4,45 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Connect Four Game</title>
+    <link rel="stylesheet" href="../../static/css/main.css" />
     <link rel="stylesheet" href="connect4_style.css" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Poppins:wght@400;600&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <!-- Libraries -->
+    <script src="https://cdn.jsdelivr.net/npm/particles.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r121/three.min.js"></script>
+    <script src="..\..\static\js\index.js" defer></script>
   </head>
   <body>
+    <div id="particles-js"></div>
+
+    <header>
+      <div class="logo" onclick="window.location.href='landing.html'">
+        <img src="../../static/images/image.png" alt="FlowAI Logo" data-translate>
+        FlowAI
+      </div>
+      <div style="display: flex; align-items: center; gap: 20px;">
+        <div class="theme-toggle">
+          <label class="switch">
+            <input type="checkbox" onclick="toggleTheme()">
+            <span class="slider"></span>
+          </label>
+        </div>
+      <nav>
+        <a href="#">☰</a>
+        <div class="menu">
+          <a href="/ai_agent" data-translate>AI Task Flow</a>
+          <a href="/games" data-translate>Games</a>
+          <a href="/pomodoro_timer" data-translate>Pomodoro</a>
+          <a href="/user_profile" data-translate>User Profile</a>
+          <a href="#" onclick="logout()" data-translate>Logout</a>
+        </div>
+      </nav>
+    </header>
+    <main>
     <div class="container">
       <h1>Connect Four</h1>
       <div class="mode-selection">
@@ -31,5 +67,9 @@
       </div>
     </div>
     <script src="connect4_script.js"></script>
+  </main>
+  <div>
+    <p>© 2024 FlowAI. All rights reserved.</p>
+  </div>
   </body>
 </html>

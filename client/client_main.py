@@ -35,9 +35,13 @@ def pomodoro_timer():
 def games():
     return render_template('games.html')
 
-@app.route('user_profile')
+@app.route('/user_profile')
 def user_profile():
     return render_template('user_profile.html')
+
+@app.route('/landing')
+def landing():
+    return render_template('landing.html')
 
 """ Step 4: Start the server """
 if __name__ == '__main__':
