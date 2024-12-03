@@ -1,5 +1,3 @@
-/* main.css */
-
 /* Import Fonts */
 @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Poppins:wght@400;600&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Architects+Daughter&family=Hanken+Grotesk:ital,wght@0,100..900;1,100..900&family=Livvic:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,900&family=Quicksand:wght@300..700&display=swap');
@@ -160,17 +158,21 @@ nav a:hover {
 nav .menu {
   display: none;
   position: absolute;
-  top: 50px;
+  top: 100%; /* Directly below the nav link */
   right: 0;
   background-color: rgba(18, 18, 18, 0.9);
   border-radius: 8px;
   padding: 10px;
   width: 200px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+  z-index: 1000;
 }
 
 [data-theme="light"] nav .menu {
   background-color: rgba(255, 255, 255, 0.9);
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
 }
+
 
 nav:hover .menu {
   display: block;
@@ -183,17 +185,12 @@ nav:hover .menu {
   text-decoration: none;
   font-weight: 500;
   border-bottom: 1px solid #2C3E50;
-  border: none;
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 [data-theme="light"] .menu a {
   color: black;
   border-bottom: 1px solid #ddd;
-}
-
-nav:hover .menu,
-nav .menu:hover {
-  display: block;
 }
 
 .menu a:last-child {
@@ -202,13 +199,14 @@ nav .menu:hover {
 
 .menu a:hover {
   background-color: #2C3E50;
+  color: var(--primary-color);
 }
 
 [data-theme="light"] .menu a:hover {
   background-color: #f0f0f0;
   color: var(--accent-color);
-
 }
+
 
 /* Header/main styles */
 main {
@@ -295,37 +293,111 @@ p {
 /* user_profile.html styles */
 .central-div {
   display: flex;
-  padding: 40px;
-  background: rgba(255, 255, 255, 0.2);
+  flex-wrap: wrap;
+  justify-content: center;
+  background: rgba(255, 255, 255, 0.1);
   backdrop-filter: blur(10px);
   padding: 30px;
   border-radius: 15px;
   box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
-  margin: 20px;
 }
 
-.inner-right-div {
-  text-align: justify;
-}
-
-#edit-profile-btn {
-  justify-content: center;
-}
-
-.inner-left-div {
-  padding-right: 50px;
-  justify-content: center;
-  align-items: center;
-}
-
-.default-user-icon {
-  width: 23vw;
-}
-
-.btn-div {
+.profile-picture-section {
+  flex: 1 1 250px;
   display: flex;
   justify-content: center;
+  align-items: center;
+  padding: 20px;
 }
+
+.profile-picture-container {
+  position: relative;
+  display: inline-block;
+}
+
+.profile-picture-container img {
+  border-radius: 50%;
+  width: 200px;
+  height: 200px;
+  object-fit: cover;
+  border: 4px solid var(--accent-color);
+  transition: transform 0.3s ease, border-color 0.3s ease;
+}
+
+.profile-picture-container:hover img {
+  transform: scale(1.05);
+  border-color: var(--primary-color);
+}
+
+/* Edit Icon Styles */
+.edit-profile-pic {
+  position: absolute;
+  bottom: 15px;
+  right: 15px;
+  background-color: var(--accent-color);
+  color: var(--primary-color);
+  border-radius: 50%;
+  padding: 10px;
+  font-size: 1rem;
+  display: none; /* Hidden by default */
+  align-items: center;
+  justify-content: center;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+  cursor: pointer;
+}
+
+.edit-profile-pic:hover {
+  background-color: #169c82; /* Slightly darker shade of #1ABC9C */
+  transform: rotate(15deg);
+}
+
+.edit-profile-pic i {
+  pointer-events: none; /* Ensures the icon itself doesn't capture the click */
+}
+
+/* Profile Information Section */
+.profile-info-section {
+  flex: 2 1 500px;
+  text-align: left;
+  padding: 20px;
+}
+
+.profile-field {
+  margin-bottom: 20px;
+  display: flex;
+  flex-direction: column;
+}
+
+.profile-field label {
+  font-weight: 600;
+  margin-bottom: 5px;
+  color: var(--primary-color);
+}
+
+.display-text {
+  font-size: 1.1rem;
+  padding: 8px 12px;
+  background-color: rgba(255, 255, 255, 0.2);
+  border-radius: 5px;
+  color: var(--primary-color);
+}
+
+.edit-input {
+  padding: 10px 12px;
+  font-size: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  outline: none;
+  color: var(--primary-color);
+  background-color: rgba(255, 255, 255, 0.1);
+  transition: background-color 0.3s ease, border-color 0.3s ease;
+}
+
+.edit-input:focus {
+  background-color: rgba(255, 255, 255, 0.15);
+  border-color: var(--accent-color);
+}
+
 
 
 /* button styles */

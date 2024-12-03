@@ -1,76 +1,100 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>FlowAI - Settings</title>
-  <link rel="stylesheet" href="../static/css/main.css">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FlowAI - Settings</title>
+    
+    <!-- Font Awesome for Icons (Single Correct Link) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha384-iw3OoTErCYJJB9mCa8LNS2hbsQ7M3C0EpIsO/H5+EGAkPGc6rk+V8i04oW/K5xq0" crossorigin="anonymous">
+  
+    <link rel="stylesheet" href="../static/css/main.css">
+  
+  <!-- Google Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Poppins:wght@400;600&display=swap" rel="stylesheet">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Architects+Daughter&family=Hanken+Grotesk:ital,wght@0,100..900;1,100..900&family=Livvic:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,900&family=Quicksand:wght@300..700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Architects+Daughter&family=Hanken+Grotesk:ital,wght@0,100..900;1,100..900&family=Livvic:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,900&family=Quicksand:wght@300..700&display=swap" rel="stylesheet" />
+  
   <!-- Libraries -->
   <script src="https://cdn.jsdelivr.net/npm/particles.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r121/three.min.js"></script>
   <script src="../static/js/index.js" defer></script>
+  <script src="../static/js/user_profile.js" type="module" defer></script>
 </head>
+
 <body>
 
-<!-- Particles.js Background -->
-<div id="particles-js"></div>
+  <!-- Particles.js Background -->
+  <div id="particles-js"></div>
 
+  <!-- Header -->
   <header>
     <div class="logo" onclick="window.location.href='landing.html'">
       <img src="../static/images/image.png" alt="FlowAI Logo">
       FlowAI
     </div>
-    <div style="display: flex; align-items: center; gap: 20px;">
+    <div class="header-right">
       <div class="theme-toggle">
         <label class="switch">
           <input type="checkbox" onclick="toggleTheme()">
           <span class="slider"></span>
         </label>
       </div>
-    <nav>
-      <a href="#">☰</a>
-      <div class="menu">
-        <a href="AI_agent.html" data-translate>AI Task Flow</a>
-        <a href="games.html" data-translate>Games</a>
-        <a href="pomodoro_timer.html" data-translate>Pomodoro Timer</a>
-        <a href="user_profile.html" data-translate>User Profile</a>
-        <a href="#" onclick="logout()" data-translate>Logout</a>
-      </div>
-    </nav>
+      <nav>
+        <a href="#">☰</a>
+        <div class="menu">
+          <a href="AI_agent.html" data-translate>AI Task Flow</a>
+          <a href="games.html" data-translate>Games</a>
+          <a href="pomodoro_timer.html" data-translate>Pomodoro Timer</a>
+          <a href="user_profile.html" data-translate>User Profile</a>
+          <a href="#" onclick="logout()" data-translate>Logout</a>
+        </div>
+      </nav>
+    </div>
   </header>
 
+  <!-- Main Content -->
   <main>
     <h1 data-translate>My Profile</h1>
-    <div class="central-div">
+    <div class="profile-container central-div">
+      
       <!-- Profile Picture Section -->
-      <div class="inner-left-div">
-        <img id="profile-picture" class="default-user-icon" src="../static/images/default_user_icon.png">
-        <input type="file" id="profile-pic-upload" accept="image/*" style="display:none;">
-        <button id="change-profile-pic-btn" class="tab-btn" data-translate>Change Picture</button>
+      <div class="profile-picture-section inner-left-div">
+        <div class="profile-picture-container">
+          <img id="profile-picture" class="default-user-icon" src="../static/images/default_user_icon.png" alt="Profile Picture">
+          <label for="profile-pic-upload" class="edit-profile-pic" aria-label="Change Profile Picture" style="display: none;">
+            <i class="fas fa-pencil-alt"></i>
+          </label>
+          <input type="file" id="profile-pic-upload" accept="image/*" style="display:none;">
+        </div>
       </div>
 
       <!-- Profile Information Section -->
-      <div class="inner-right-div" id="profile-info">
+      <div class="profile-info-section inner-right-div" id="profile-info">
+        <!-- Name -->
         <div class="profile-field">
           <label data-translate>Name:</label>
-          <span id="display-name"></span>
+          <span id="display-name" class="display-text"></span>
           <input type="text" id="edit-name" class="edit-input" style="display:none;">
         </div>
+
+        <!-- Username -->
         <div class="profile-field">
           <label data-translate>Username:</label>
-          <span id="display-username"></span>
+          <span id="display-username" class="display-text"></span>
         </div>
+
+        <!-- Email -->
         <div class="profile-field">
           <label data-translate>Email:</label>
-          <span id="display-email"></span>
+          <span id="display-email" class="display-text"></span>
         </div>
+
+        <!-- Gender -->
         <div class="profile-field">
           <label data-translate>Gender:</label>
-          <span id="display-gender"></span>
+          <span id="display-gender" class="display-text"></span>
           <select id="edit-gender" class="edit-input" style="display:none;">
             <option value="male" data-translate>Male</option>
             <option value="female" data-translate>Female</option>
@@ -78,19 +102,25 @@
             <option value="prefer-not-to-say" data-translate>Prefer Not to Say</option>
           </select>
         </div>
+
+        <!-- Place of Residence -->
         <div class="profile-field">
           <label data-translate>Place of Residence:</label>
-          <span id="display-residence"></span>
+          <span id="display-residence" class="display-text"></span>
           <input type="text" id="edit-residence" class="edit-input" style="display:none;">
         </div>
+
+        <!-- Field of Study -->
         <div class="profile-field">
           <label data-translate>Field of Study:</label>
-          <span id="display-study"></span>
+          <span id="display-study" class="display-text"></span>
           <input type="text" id="edit-study" class="edit-input" style="display:none;">
         </div>
+
+        <!-- Language -->
         <div class="profile-field">
           <label data-translate>Language:</label>
-          <span id="display-language"></span>
+          <span id="display-language" class="display-text"></span>
           <select id="edit-language" class="edit-input" style="display:none;">
             <option value="en" data-translate>English</option>
             <option value="ta" data-translate>Tamil</option>
@@ -101,6 +131,7 @@
           </select>
         </div>
 
+        <!-- Action Buttons -->
         <div class="btn-div">
           <button id="edit-profile-btn" class="tab-btn" data-translate>Edit Profile</button>
           <button id="save-profile-btn" class="tab-btn" style="display:none;" data-translate>Save Changes</button>
@@ -109,6 +140,8 @@
       </div>
     </div>
   </main>
+  
+  <!-- Footer -->
   <footer data-translate>
     © 2024 FlowAI. All rights reserved.
   </footer>

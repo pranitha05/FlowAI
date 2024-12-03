@@ -71,60 +71,56 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     // Signup Form Submission
-    const signupForm = document.getElementById('signupForm');
-    const signupMessage = document.getElementById('signupMessage');
+const signupForm = document.getElementById('signupForm');
+const signupMessage = document.getElementById('signupMessage');
 
-    signupForm.addEventListener('submit', async (e) => {
-        e.preventDefault();
-        displayMessage(signupMessage, '');
+signupForm.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    displayMessage(signupMessage, '');
 
-        const username = document.getElementById('signup-username').value.trim();
-        const email = document.getElementById('signup-email').value.trim();
-        const password = document.getElementById('signup-password').value;
-        const name = document.getElementById('signup-name').value.trim();
-        const age = parseInt(document.getElementById('signup-age').value, 10);
-        const gender = document.getElementById('signup-gender').value;
-        const fieldOfStudy = document.getElementById('signup-study').value.trim();
-        const preferredLanguage = document.getElementById('signup-language').value;
+    // Create a FormData object
+    const formData = new FormData();
 
-        if (!username || !email || !password || !name || !age || !gender || !fieldOfStudy || !preferredLanguage) {
-            displayMessage(signupMessage, 'Please fill in all fields.');
-            return;
+    // Append form fields to FormData
+    formData.append('username', document.getElementById('signup-username').value.trim());
+    formData.append('email', document.getElementById('signup-email').value.trim());
+    formData.append('password', document.getElementById('signup-password').value);
+    formData.append('name', document.getElementById('signup-name').value.trim());
+    formData.append('age', parseInt(document.getElementById('signup-age').value, 10));
+    formData.append('gender', document.getElementById('signup-gender').value);
+    formData.append('fieldOfStudy', document.getElementById('signup-study').value.trim());
+    formData.append('preferredLanguage', document.getElementById('signup-language').value);
+
+    // Append the profile picture file if it exists
+    const profilePicInput = document.getElementById('signup-profile-pic');
+    if (profilePicInput.files[0]) {
+        formData.append('profile_picture', profilePicInput.files[0]);
+    }
+
+    try {
+        const response = await fetch(`${backendUrl}/user/signup`, {
+            method: 'POST',
+            body: formData // Let the browser set the Content-Type to multipart/form-data
+        });
+
+        const data = await response.json();
+
+        if (response.ok) {
+            // Save the token securely (consider using secure storage in production)
+            localStorage.setItem('access_token', data.access_token);
+            localStorage.setItem('userId', data.userId);
+            localStorage.setItem('preferredLanguage', data.preferredLanguage || 'en');
+            // Redirect to dashboard
+            window.location.href = '/dashboard';
+        } else {
+            displayMessage(signupMessage, data.error || 'Signup failed.');
         }
+    } catch (error) {
+        displayMessage(signupMessage, 'An error occurred. Please try again.');
+        console.error('Signup Error:', error);
+    }
+});
 
-        try {
-            const response = await fetch(`${backendUrl}/user/signup`, {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ 
-                    username, 
-                    email, 
-                    password, 
-                    name, 
-                    age, 
-                    gender, 
-                    fieldOfStudy, 
-                    preferredLanguage 
-                })
-            });
-
-            const data = await response.json();
-
-            if (response.ok) {
-                // Save the token securely (consider using secure storage in production)
-                localStorage.setItem('access_token', data.access_token);
-                localStorage.setItem('userId', data.userId);
-                localStorage.setItem('preferredLanguage', data.preferredLanguage || 'en');
-                // Redirect to dashboard
-                window.location.href = '/dashboard';
-            } else {
-                displayMessage(signupMessage, data.error || 'Signup failed.');
-            }
-        } catch (error) {
-            displayMessage(signupMessage, 'An error occurred. Please try again.');
-            console.error('Signup Error:', error);
-        }
-    });
     // Forgot Password Form Submission
     const forgotPasswordForm = document.getElementById('forgotPasswordForm');
     const forgotPasswordMessage = document.getElementById('forgotPasswordMessage');

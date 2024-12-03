@@ -23,10 +23,6 @@ def dashboard():
 def ai_agent():
     return render_template('AI_agent.html')
 
-@app.route('/profile')
-def user_profile():
-    return render_template('user_profile.html')
-
 @app.route('/pomodoro_timer')
 def pomodoro_timer():
     return render_template('pomodoro_timer.html')
@@ -34,6 +30,18 @@ def pomodoro_timer():
 @app.route('/games')
 def games():
     return render_template('games.html')
+
+@app.route('/games/connect_four')
+def connect_four():
+    return render_template('connect4_index.html')
+
+@app.route('/games/hangman')
+def hangman():
+    return render_template('hangman_index.html')
+
+@app.route('/games/tik_tac_toe')
+def tik_tac_toe():
+    return render_template('tictactoe_index.html')
 
 @app.route('/user_profile')
 def user_profile():
