@@ -1,5 +1,3 @@
-
-
 # FlowAI
 
 FlowAI is a website designed to enhance productivity by integrating AI-driven task flow creation and social media usage tracking. Users can input prompts to generate task flows automatically, track their online habits, and receive personalized challenges and rewards to boost efficiency.

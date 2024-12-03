@@ -580,3 +580,90 @@ footer {
     left: 0;
   }
 }
+/* AI Task Flow Prompt Styles */
+.prompt-container {
+  max-width: 800px;
+  margin: 2rem auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+}
+
+.prompt-input {
+  width: 100%;
+  min-height: 150px;
+  padding: 1rem;
+  font-size: 1rem;
+  line-height: 1.5;
+  border: 2px solid var(--border-color, #4a4a4a);
+  border-radius: 8px;
+  background-color: var(--input-bg, #2c2c2c);
+  color: var(--text-color, #ffffff);
+  resize: vertical;
+  transition: border-color 0.3s ease;
+  font-family: 'Poppins', sans-serif;
+}
+
+.prompt-input:focus {
+  outline: none;
+  border-color: var(--primary-color, #6a11cb);
+  box-shadow: 0 0 10px rgba(106, 17, 203, 0.3);
+}
+
+.prompt-input::placeholder {
+  color: var(--placeholder-color, #888);
+  opacity: 0.7;
+}
+
+.generate-btn {
+  padding: 0.75rem 1.5rem;
+  font-size: 1rem;
+  font-weight: 600;
+  font-family: 'Poppins', sans-serif;
+  background-color: var(--primary-color, #6a11cb);
+  color: rgb(0, 0, 0);
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.generate-btn:hover {
+  background-color: var(--primary-hover-color, #5a0faa);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+}
+
+.generate-btn:active {
+  transform: translateY(1px);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+/* Dark theme variables (if not already defined) */
+body[data-theme="dark"] {
+  --border-color: #4a4a4a;
+  --input-bg: #2c2c2c;
+  --text-color: #000000;
+  --placeholder-color: #888;
+  --primary-color: #6a11cb;
+  --primary-hover-color: #5a0faa;
+}
+
+/* Optional: Responsive adjustments */
+@media (max-width: 768px) {
+  .prompt-container {
+      width: 90%;
+      margin: 1rem auto;
+  }
+
+  .prompt-input {
+      font-size: 0.9rem;
+  }
+
+  .generate-btn {
+      width: 100%;
+  }
+}
